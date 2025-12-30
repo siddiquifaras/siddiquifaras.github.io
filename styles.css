@@ -147,7 +147,7 @@ body {
 }
 
 .contact-list li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.625rem;
     display: flex;
     align-items: center;
     font-size: 0.75rem;
