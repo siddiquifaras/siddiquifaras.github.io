@@ -123,27 +123,9 @@ body {
     list-style: none;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
     text-align: left;
-}
-
-/* Mobile-specific contact list adjustments */
-@media (max-width: 480px) {
-    .contact-list {
-        grid-template-columns: 1fr;
-        gap: 0.875rem;
-    }
-    
-    .contact-list li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .contact-link {
-        font-size: 0.8rem;
-        min-height: 2.5rem;
-        align-items: center;
-    }
 }
 
 .contact-list li {
