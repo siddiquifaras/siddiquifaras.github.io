@@ -52,6 +52,18 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Extra mobile spacing for very small screens */
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 1.5rem 1rem;
+    }
+    
+    .sidebar-content {
+        max-width: 100%;
+        overflow: hidden;
+    }
+}
+
 .sidebar-content {
     display: flex;
     flex-direction: column;
@@ -111,9 +123,27 @@ body {
     list-style: none;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
     text-align: left;
+}
+
+/* Mobile-specific contact list adjustments */
+@media (max-width: 480px) {
+    .contact-list {
+        grid-template-columns: 1fr;
+        gap: 0.875rem;
+    }
+    
+    .contact-list li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-link {
+        font-size: 0.8rem;
+        min-height: 2.5rem;
+        align-items: center;
+    }
 }
 
 .contact-list li {
@@ -142,6 +172,17 @@ body {
     flex-shrink: 0;
     color: var(--base-color);
     transition: color 0.2s;
+    width: 16px;
+    height: 16px;
+}
+
+/* Ensure icons don't overlap on mobile */
+@media (max-width: 480px) {
+    .contact-list .icon {
+        margin-right: 1rem;
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .contact-link:hover .icon {
