@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TALON — Faras Siddiqui</title>
+    <meta name="description" content="TALON is Type 1 Compute's neuromorphic computing SDK. I built its simulation engine, IR visualiser and a binary encoder that compresses spiking networks about a thousandfold.">
+    <meta name="author" content="Faras Siddiqui">
+    <link rel="canonical" href="https://siddiquifaras.github.io/talon.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="TALON — Faras Siddiqui">
+    <meta property="og:description" content="TALON is Type 1 Compute's neuromorphic computing SDK. I built its simulation engine, IR visualiser and a binary encoder that compresses spiking networks about a thousandfold.">
+    <meta property="og:url" content="https://siddiquifaras.github.io/talon.html">
+    <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#fbfaf7">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+        <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M14 3.5V8h4.5M9.5 13h5M9.5 16.5h5"/></symbol>
+        <symbol id="i-hash" viewBox="0 0 24 24"><path d="M10 4 8 20M16 4l-2 16M4.5 9h15M4.5 15h15"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+        <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+        <symbol id="i-net" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 12h3M13.7 11l3.6-4M13.7 13l3.6 4"/></symbol>
+        <symbol id="i-server" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="2"/><rect x="3.5" y="13" width="17" height="7" rx="2"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></symbol>
+        <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0"/></symbol>
+        <symbol id="i-gitlab" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="m23.6 9.59-.03-.09L20.3.98a.85.85 0 0 0-1.63.1l-2.2 6.74H7.54L5.33 1.07a.86.86 0 0 0-1.63-.1L.43 9.5l-.03.09a6.07 6.07 0 0 0 2.01 7.01l.04.03 4.98 3.73 2.46 1.86 1.5 1.13a1.01 1.01 0 0 0 1.22 0l1.5-1.13 2.46-1.86 5.01-3.75.01-.01a6.07 6.07 0 0 0 2.01-7.01"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">
+                <span class="monogram" aria-hidden="true">FS</span>
+                <span class="brand-name">Faras Siddiqui</span>
+                <span class="brand-context" aria-hidden="true"></span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a class="nav-link" href="index.html#Experience">Experience</a>
+                <a class="nav-link" href="index.html#Projects">Projects</a>
+                <a class="nav-link" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+                <button type="button" class="search-trigger" aria-label="Search">
+                    <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                    <span class="label">Search</span>
+                    <kbd>⌘K</kbd>
+                </button>
+                <a class="button primary" href="contact.html#Book_a_call">
+                    <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+                    Book a call
+                </a>
+                <button type="button" class="icon-button menu-button" aria-label="Menu" aria-expanded="false" aria-controls="menu-sheet">
+                    <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+                </button>
+            </nav>
+        </div>
+        <div class="reading-progress" aria-hidden="true"></div>
+    </header>
+
+    <nav class="menu-sheet" id="menu-sheet" aria-label="Menu" hidden>
+        <a href="index.html#Experience">Experience</a>
+        <a href="index.html#Projects">Projects</a>
+        <a href="frames2py.html">Frames2Py</a>
+        <a href="talon.html">TALON</a>
+        <a href="contact.html">Contact</a>
+        <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Download CV</a>
+        <a class="button primary" href="contact.html#Book_a_call">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+            Book a call
+        </a>
+    </nav>
+
+    <div class="layout" id="content">
+        <aside class="toc-rail" aria-label="Contents">
+            <div class="toc-actions">
+                <a href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>About me</a>
+                <a href="https://type1compute.github.io/docs/talon-ecosystem/introduction"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>TALON documentation</a>
+                <a href="frames2py.html"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>Frames2Py</a>
+            </div>
+        </aside>
+
+        <header class="article-head">
+            <p class="eyebrow"><a href="index.html#Projects">Projects</a> · Neuromorphic computing</p>
+            <h1>TALON</h1>
+            <p class="dek">Tactical AI at Low-power On-device Nodes: an SDK that takes PyTorch models to neuromorphic hardware, and the compression and tooling I built for it.</p>
+            <div class="byline">
+                <span><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>SDK by Type 1 Compute</span>
+                <span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><code>pip install t1c-talon</code></span>
+            </div>
+        </header>
+
+        <aside class="infobox" aria-label="At a glance">
+            <div class="infobox-card">
+                <div class="infobox-mark" aria-hidden="true">
+                    <svg viewBox="0 0 150 120">
+                        <g fill="none" stroke="#9a988f" stroke-width="1">
+                            <path d="M20 30 L75 20 M20 30 L75 60 M20 60 L75 20 M20 60 L75 60 M20 60 L75 100 M20 90 L75 60 M20 90 L75 100 M75 20 L130 40 M75 60 L130 40 M75 60 L130 80 M75 100 L130 80"/>
+                        </g>
+                        <g fill="#ffffff" stroke="#17171a" stroke-width="1.5">
+                            <circle cx="20" cy="30" r="7"/><circle cx="20" cy="60" r="7"/><circle cx="20" cy="90" r="7"/>
+                            <circle cx="75" cy="20" r="7"/><circle cx="75" cy="100" r="7"/>
+                            <circle cx="130" cy="80" r="7"/>
+                        </g>
+                        <g fill="#2d4fd6">
+                            <circle cx="75" cy="60" r="7.5"/><circle cx="130" cy="40" r="7.5"/>
+                        </g>
+                        <g stroke="#2d4fd6" stroke-width="2" stroke-linecap="round">
+                            <path d="M86 60h6M139 40h6"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="infobox-title">
+                    <strong>TALON</strong>
+                    <span>Neuromorphic computing SDK</span>
+                </div>
+                <dl class="facts">
+                    <div><dt>Publisher</dt><dd>Type 1 Compute</dd></div>
+                    <div><dt>My part</dt><dd>Simulation engine<br>IR visualiser<br>Binary encoder</dd></div>
+                    <div><dt>Packages</dt><dd>7, installed together as <code>t1c-talon</code></dd></div>
+                    <div><dt>Inputs</dt><dd>PyTorch, snnTorch</dd></div>
+                    <div><dt>Targets</dt><dd>Type 1 Compute neuromorphic hardware<span class="sub">Xilinx Zynq FPGAs via hls4ml</span></dd></div>
+                    <div><dt>Formats</dt><dd>HDF5 (<code>.t1c</code>), EVT2, EVT3, AEDAT4</dd></div>
+                </dl>
+                <div class="infobox-actions">
+                    <a class="button primary" href="https://type1compute.github.io/docs/talon-ecosystem/introduction"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>Documentation</a>
+                    <div class="row">
+                        <a class="button secondary" href="https://pypi.org/project/t1c-talon/"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>PyPI</a>
+                        <a class="button secondary" href="contact.html"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Ask me</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="article-body prose">
+
+            <p class="lead">TALON (Tactical AI at Low-power On-device Nodes) is a neuromorphic computing SDK for Type 1 Compute hardware. It connects machine-learning frameworks to neuromorphic deployment, for <a href="https://en.wikipedia.org/wiki/Spiking_neural_network">spiking neural networks</a> and hybrid architectures alike.<sup class="ref"><a href="#ref-talon"></a></sup> I built three of its pieces: the simulation engine, the IR visualiser and the binary encoder. The encoder stores a ten-layer network in about 200 bytes instead of about 200&nbsp;KB.<sup class="ref"><a href="#ref-cv"></a></sup></p>
+
+            <div class="stats">
+                <div class="stat"><span class="stat-value">~1000<small>×</small></span><span class="stat-label">Smaller: a ten-layer network goes from 200&nbsp;KB to 200&nbsp;B</span></div>
+                <div class="stat"><span class="stat-value">7</span><span class="stat-label">Packages in the SDK</span></div>
+                <div class="stat"><span class="stat-value">36</span><span class="stat-label">IR primitives across SNNs, ANNs and hybrids</span></div>
+                <div class="stat"><span class="stat-value">2</span><span class="stat-label">My fixes merged upstream into NIR</span></div>
+            </div>
+
+            <h2 id="Overview"><span class="num">01</span>Overview</h2>
+            <p>TALON mirrors the ONNX approach. A PyTorch model is exported to a TALON IR graph with <code>bridge.to_ir()</code>, then written to a portable <code>.t1c</code> file with <code>ir.write()</code>. From there, separate packages map the graph onto hardware, compile, simulate and profile it, or visualise it.<sup class="ref"><a href="#ref-talon"></a></sup> The split lets ML engineers export models without knowing the hardware, and lets hardware teams consume a standard IR without touching PyTorch.<sup class="ref"><a href="#ref-talon"></a></sup></p>
+
+            <figure>
+                <div class="figure-card">
+                    <div class="pipeline" role="img" aria-label="TALON flow: a PyTorch model is exported with bridge.to_ir to a TALON IR graph and written with ir.write to a .t1c file, which feeds graph mapping, backend compilation and simulation, and visualisation.">
+                        <div class="pipeline-row"><div class="node">PyTorch model</div><div class="node-note">SNN, ANN or hybrid, including snnTorch</div></div>
+                        <div class="pipeline-edge"><span></span><code>bridge.to_ir()</code></div>
+                        <div class="pipeline-row"><div class="node">TALON IR graph</div><div class="node-note">36 primitives, NIR-compliant LIF dynamics</div></div>
+                        <div class="pipeline-edge"><span></span><code>ir.write()</code></div>
+                        <div class="pipeline-row"><div class="node accent">.t1c file</div><div class="node-note">HDF5 serialisation, portable between teams</div></div>
+                        <div class="pipeline-edge"><span></span><code>graph · backend · viz</code></div>
+                        <div class="pipeline-row"><div class="consumers"><div class="node">graph</div><div class="node">backend</div><div class="node">viz</div></div><div class="node-note">partition, place and route; compile, simulate and profile; visualise</div></div>
+                    </div>
+                </div>
+                <figcaption class="caption">The TALON pipeline, after the project's documentation.<sup class="ref"><a href="#ref-talon"></a></sup></figcaption>
+            </figure>
+
+            <h2 id="Packages"><span class="num">02</span>Packages</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th scope="col">Package</th><th scope="col">PyPI</th><th scope="col">Purpose</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>talon.sdk</code></td><td><a href="https://pypi.org/project/t1c-talon/">t1c-talon</a></td><td>Meta-package and the <code>talon</code> / <code>t1c</code> command-line tools</td></tr>
+                        <tr><td><code>talon.ir</code></td><td><a href="https://pypi.org/project/talon-ir/">talon-ir</a></td><td>Core IR primitives and HDF5 serialisation</td></tr>
+                        <tr><td><code>talon.bridge</code></td><td><a href="https://pypi.org/project/talon-bridge/">talon-bridge</a></td><td>PyTorch export and import</td></tr>
+                        <tr><td><code>talon.viz</code></td><td><a href="https://pypi.org/project/talon-viz/">talon-viz</a></td><td>Interactive graph and spike visualisation</td></tr>
+                        <tr><td><code>talon.graph</code></td><td><a href="https://pypi.org/project/talon-graph/">talon-graph</a></td><td>Partitioning, placement, routing and resource allocation</td></tr>
+                        <tr><td><code>talon.backend</code></td><td><a href="https://pypi.org/project/talon-backend/">talon-backend</a></td><td>Compilation, CPU simulation and the hls4ml FPGA backend</td></tr>
+                        <tr><td><code>talon.io</code></td><td><a href="https://pypi.org/project/talon-io/">talon-io</a></td><td>Event streaming, format conversion and neural encoding</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The IR covers spiking, conventional and hybrid networks, with standard activations and normalisation layers. Graph algorithms run on RustworkX, the CPU simulator estimates latency and energy, and the event I/O package decodes EVT2 and EVT3 streams at more than 5 million events per second.<sup class="ref"><a href="#ref-talon"></a></sup></p>
+
+            <h2 id="My_work"><span class="num">03</span>My work</h2>
+            <dl>
+                <dt>Simulation engine</dt>
+                <dd>A lightweight execution engine with optimised primitives for spike-based computation, handling temporal dynamics and event-driven processing with minimal memory overhead.<sup class="ref"><a href="#ref-cv"></a></sup><sup class="ref"><a href="#ref-projects"></a></sup></dd>
+                <dt>IR visualiser</dt>
+                <dd>Interactive tools for debugging and analysing spiking networks, including real-time spike-pattern visualisation and performance profiling.<sup class="ref"><a href="#ref-cv"></a></sup><sup class="ref"><a href="#ref-projects"></a></sup></dd>
+                <dt>Binary encoder</dt>
+                <dd>A compact serialisation format for efficient inference. It stores a ten-layer network in about 200 bytes instead of about 200&nbsp;KB.<sup class="ref"><a href="#ref-cv"></a></sup></dd>
+            </dl>
+
+            <h2 id="Upstream"><span class="num">04</span>Upstream contributions</h2>
+            <p>TALON's neuron dynamics follow the Neuromorphic Intermediate Representation (<a href="https://neuroir.org/docs/">NIR</a>),<sup class="ref"><a href="#ref-talon"></a></sup> and I've contributed fixes to NIR's reference implementation. Two were merged in March 2026. The first repaired a type-check guard in <code>read()</code> that tested for an attribute on a dictionary and so could never fire.<sup class="ref"><a href="#ref-nir-187"></a></sup> The second added structural validation that names dangling and duplicate edges before type inference begins.<sup class="ref"><a href="#ref-nir-188"></a></sup> A third, still in review, resolves the types of scalar (zero-dimensional) neuron parameters from graph context and stops HDF5 from trying to compress zero-dimensional datasets.<sup class="ref"><a href="#ref-nir-189"></a></sup></p>
+
+
+            <h2 id="References"><span class="num">05</span>References</h2>
+            <ol class="references">
+                <li id="ref-talon"><cite><a href="https://type1compute.github.io/docs/talon-ecosystem/introduction">TALON Ecosystem: Introduction</a>. <span class="src">Type 1 Compute documentation, retrieved 9 October 2026.</span></cite></li>
+                <li id="ref-cv"><cite>Faras Siddiqui. <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Curriculum vitae</a> <span class="src">(PDF)</span>.</cite></li>
+                <li id="ref-projects"><cite>Faras Siddiqui. <a href="https://github.com/siddiquifaras/siddiquifaras.github.io/blob/f8d37bb/pet-projects.html">Projects</a>. <span class="src">Earlier version of this site.</span></cite></li>
+                <li id="ref-nir-187"><cite>Faras Siddiqui. <a href="https://github.com/neuromorphs/NIR/pull/187">fix: use dict key lookup instead of hasattr in read()</a>. <span class="src">neuromorphs/NIR pull request #187, 25 February 2026.</span></cite></li>
+                <li id="ref-nir-188"><cite>Faras Siddiqui. <a href="https://github.com/neuromorphs/NIR/pull/188">fix: add structural graph validation before type inference</a>. <span class="src">neuromorphs/NIR pull request #188, 25 February 2026.</span></cite></li>
+                <li id="ref-nir-189"><cite>Faras Siddiqui. <a href="https://github.com/neuromorphs/NIR/pull/189">fix: resolve scalar parameter types from graph context during inference</a>. <span class="src">neuromorphs/NIR pull request #189, 25 February 2026.</span></cite></li>
+            </ol>
+        </article>
+    </div>
+
+    <button type="button" class="toc-fab" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
+        Contents
+    </button>
+    <div class="scrim" hidden></div>
+    <div class="toc-sheet" role="dialog" aria-label="Contents" hidden></div>
+
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+        <div class="palette-box">
+            <div class="palette-input">
+                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                <input type="text" placeholder="Search pages, sections and links" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="palette-results" autocomplete="off" spellcheck="false">
+            </div>
+            <ul class="palette-results" id="palette-results" role="listbox"></ul>
+            <div class="palette-foot">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> move</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>esc</kbd> close</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-sign">
+                Faras Siddiqui
+                <span>Software engineer · <a href="mailto:siddiquifaras@gmail.com">siddiquifaras@gmail.com</a></span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="contact.html#Book_a_call">Book a call</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
+                <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
+                <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
+                <li><a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

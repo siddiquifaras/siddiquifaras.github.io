@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frames2Py — Faras Siddiqui</title>
+    <meta name="description" content="Frames2Py is my open-source Python library for live, decoupled observation of event-camera state, sustaining over 20 million events per second.">
+    <meta name="author" content="Faras Siddiqui">
+    <link rel="canonical" href="https://siddiquifaras.github.io/frames2py.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Frames2Py — Faras Siddiqui">
+    <meta property="og:description" content="Frames2Py is my open-source Python library for live, decoupled observation of event-camera state, sustaining over 20 million events per second.">
+    <meta property="og:url" content="https://siddiquifaras.github.io/frames2py.html">
+    <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#fbfaf7">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+        <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M14 3.5V8h4.5M9.5 13h5M9.5 16.5h5"/></symbol>
+        <symbol id="i-hash" viewBox="0 0 24 24"><path d="M10 4 8 20M16 4l-2 16M4.5 9h15M4.5 15h15"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+        <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+        <symbol id="i-net" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 12h3M13.7 11l3.6-4M13.7 13l3.6 4"/></symbol>
+        <symbol id="i-server" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="2"/><rect x="3.5" y="13" width="17" height="7" rx="2"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></symbol>
+        <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0"/></symbol>
+        <symbol id="i-gitlab" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="m23.6 9.59-.03-.09L20.3.98a.85.85 0 0 0-1.63.1l-2.2 6.74H7.54L5.33 1.07a.86.86 0 0 0-1.63-.1L.43 9.5l-.03.09a6.07 6.07 0 0 0 2.01 7.01l.04.03 4.98 3.73 2.46 1.86 1.5 1.13a1.01 1.01 0 0 0 1.22 0l1.5-1.13 2.46-1.86 5.01-3.75.01-.01a6.07 6.07 0 0 0 2.01-7.01"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="index.html">
+                <span class="monogram" aria-hidden="true">FS</span>
+                <span class="brand-name">Faras Siddiqui</span>
+                <span class="brand-context" aria-hidden="true"></span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a class="nav-link" href="index.html#Experience">Experience</a>
+                <a class="nav-link" href="index.html#Projects">Projects</a>
+                <a class="nav-link" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+                <button type="button" class="search-trigger" aria-label="Search">
+                    <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                    <span class="label">Search</span>
+                    <kbd>⌘K</kbd>
+                </button>
+                <a class="button primary" href="contact.html#Book_a_call">
+                    <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+                    Book a call
+                </a>
+                <button type="button" class="icon-button menu-button" aria-label="Menu" aria-expanded="false" aria-controls="menu-sheet">
+                    <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+                </button>
+            </nav>
+        </div>
+        <div class="reading-progress" aria-hidden="true"></div>
+    </header>
+
+    <nav class="menu-sheet" id="menu-sheet" aria-label="Menu" hidden>
+        <a href="index.html#Experience">Experience</a>
+        <a href="index.html#Projects">Projects</a>
+        <a href="frames2py.html">Frames2Py</a>
+        <a href="talon.html">TALON</a>
+        <a href="contact.html">Contact</a>
+        <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Download CV</a>
+        <a class="button primary" href="contact.html#Book_a_call">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+            Book a call
+        </a>
+    </nav>
+
+    <div class="layout" id="content">
+        <aside class="toc-rail" aria-label="Contents">
+            <div class="toc-actions">
+                <a href="index.html"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>About me</a>
+                <a href="https://github.com/siddiquifaras/frames2py"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Source on GitHub</a>
+                <a href="https://siddiquifaras.github.io/frames2py/"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Documentation</a>
+            </div>
+        </aside>
+
+        <header class="article-head">
+            <p class="eyebrow"><a href="index.html#Projects">Projects</a> · Open-source library</p>
+            <h1>Frames2Py</h1>
+            <p class="dek">Live, decoupled observation of event-camera state: one loop keeps up with the sensor, and everything else watches from the side.</p>
+            <div class="byline">
+                <span><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>My open-source project</span>
+                <span><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Version 1.1.0 · 7 October 2026</span>
+            </div>
+        </header>
+
+        <aside class="infobox" aria-label="At a glance">
+            <div class="infobox-card">
+                <div class="infobox-logo">
+                    <img src="https://siddiquifaras.github.io/frames2py/assets/frames2py-logo.svg" alt="Frames2Py logo" width="210" height="46">
+                </div>
+                <div class="infobox-title">
+                    <strong>Frames2Py</strong>
+                    <span>Python library for event cameras</span>
+                </div>
+                <dl class="facts">
+                    <div><dt>Author</dt><dd><a href="index.html">Faras Siddiqui</a></dd></div>
+                    <div><dt>Released</dt><dd>1.0.0 · 29 Sep 2026<span class="sub">1.1.0 · 7 Oct 2026</span></dd></div>
+                    <div><dt>Written in</dt><dd>Python, NumPy</dd></div>
+                    <div><dt>Runs on</dt><dd>CPython 3.11–3.14, free-threaded 3.14t<span class="sub">Linux x86-64 and ARM64, macOS ARM64</span></dd></div>
+                    <div><dt>License</dt><dd>Apache 2.0<span class="sub">MIT for 1.0.x</span></dd></div>
+                    <div><dt>Install</dt><dd><code>pip install frames2py</code></dd></div>
+                </dl>
+                <div class="infobox-actions">
+                    <a class="button primary" href="https://siddiquifaras.github.io/frames2py/"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>Documentation</a>
+                    <div class="row">
+                        <a class="button secondary" href="https://github.com/siddiquifaras/frames2py"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+                        <a class="button secondary" href="https://pypi.org/project/frames2py/"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>PyPI</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article class="article-body prose">
+            <p class="lead">Frames2Py is an open-source Python library for live, decoupled observation of <a href="https://en.wikipedia.org/wiki/Event_camera">event-camera</a> state. I wrote it. A producer thread feeds camera events to an engine that accumulates them and publishes immutable snapshots. Any number of consumers read the latest snapshot at their own pace, and the producer never waits for them.<sup class="ref"><a href="#ref-repo"></a></sup></p>
+            <p>The library depends only on <a href="https://en.wikipedia.org/wiki/NumPy">NumPy</a>, reads the common event-camera recording formats, and runs on CPython 3.11 to 3.14, including the free-threaded build of 3.14 that runs without the <a href="https://en.wikipedia.org/wiki/Global_interpreter_lock">global interpreter lock</a>.<sup class="ref"><a href="#ref-repo"></a></sup> Version 1.0 sustained more than 20&nbsp;million events per second in every cell of its performance gate.<sup class="ref"><a href="#ref-perf"></a></sup></p>
+
+            <h2 id="Background"><span class="num">01</span>Background</h2>
+            <p>An event camera does not capture whole frames at a fixed rate. It reports per-pixel brightness changes as a stream of asynchronous events, often millions a second. The loop that consumes that stream for tracking, inference or control has to keep up. At the same time something else usually needs to see what the sensor sees right now, such as a display, a monitor or a second algorithm. If that observation runs inside the loop, the loop slows down to its speed.<sup class="ref"><a href="#ref-repo"></a></sup></p>
+            <p>Frames2Py separates the two concerns: the loop stays the only writer, and every observer reads finished snapshots from the side.<sup class="ref"><a href="#ref-repo"></a></sup> The repository was created in February 2026, and version 1.0.0 was published on 29 September 2026, the same day as its release candidate.<sup class="ref"><a href="#ref-releases"></a></sup></p>
+
+            <h2 id="Design"><span class="num">02</span>Design</h2>
+            <figure>
+                <div class="figure-card">
+                    <div class="pipeline" role="img" aria-label="Frames2Py data flow from event stream through Engine.ingest, kernel accumulation and snapshot publication to independent consumers.">
+                        <div class="pipeline-row"><div class="node">event stream</div><div class="node-note">camera SDK, file adapter or your own code</div></div>
+                        <div class="pipeline-edge"><span></span><code>Engine.ingest()</code></div>
+                        <div class="pipeline-row"><div class="node">kernel</div><div class="node-note">counts, polarity, time surface, decays, time bins</div></div>
+                        <div class="pipeline-edge"><span></span><code>at most once per snapshot_interval_ms</code></div>
+                        <div class="pipeline-row"><div class="node accent">snapshot</div><div class="node-note">a fresh frame plus metadata, shared and never written again</div></div>
+                        <div class="pipeline-edge"><span></span><code>snapshot() / wait_for_newer()</code></div>
+                        <div class="pipeline-row"><div class="consumers"><div class="node">viewer</div><div class="node">model</div><div class="node">…</div></div><div class="node-note">any thread, any number</div></div>
+                    </div>
+                </div>
+                <figcaption class="caption">The pipeline, after the project's README. All accumulation work happens on the producer's thread; consumers only read finished snapshots.<sup class="ref"><a href="#ref-repo"></a></sup></figcaption>
+            </figure>
+
+            <h3 id="Engine">Engine</h3>
+            <p>The <code>Engine</code> is the live runtime. One producer thread calls <code>ingest()</code> with arrays of events, and <code>ingest()</code> does its CPU work on that thread without ever waiting on a consumer or on I/O. The first call always publishes; after that the engine publishes at most once per configured interval.<sup class="ref"><a href="#ref-repo"></a></sup> Consumers call <code>snapshot()</code> for the latest publication or, from version 1.1, block in <code>wait_for_newer(sequence)</code> until a newer one appears. Calling <code>wait_for_newer()</code> from the producer's own thread raises <code>RuntimeError</code>.<sup class="ref"><a href="#ref-changelog"></a></sup></p>
+
+            <h3 id="Accumulator">Accumulator</h3>
+            <p>The <code>Accumulator</code> performs the same accumulation without publication or threads, for offline processing, tests and loops that the caller drives directly.<sup class="ref"><a href="#ref-repo"></a></sup></p>
+
+            <h3 id="Snapshots">Snapshots</h3>
+            <p>A snapshot holds the frame and metadata (a watermark and a sequence number) from one publication. The frame is shared by every consumer and is read-only; <code>snapshot.copy()</code> gives a consumer its own writable copy.<sup class="ref"><a href="#ref-repo"></a></sup></p>
+
+            <h3 id="Kernels">Kernels</h3>
+            <p>A kernel defines what a frame represents. Version 1.1 ships seven built-in kernels, and users can write their own.<sup class="ref"><a href="#ref-repo"></a></sup><sup class="ref"><a href="#ref-changelog"></a></sup></p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th scope="col">Kernel</th><th scope="col">Since</th><th scope="col">Representation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>event_count</code></td><td>1.0</td><td>Events per pixel since the previous publication</td></tr>
+                        <tr><td><code>polarity</code></td><td>1.0</td><td>Windowed counts split by polarity (brightness up or down)</td></tr>
+                        <tr><td><code>time_surface</code></td><td>1.0</td><td>Latest event timestamp per pixel</td></tr>
+                        <tr><td><code>ExpDecay</code></td><td>1.0</td><td>Exponential decay applied once per call</td></tr>
+                        <tr><td><code>TimestampDecay</code></td><td>1.0</td><td>Decay in event time, independent of how events are batched</td></tr>
+                        <tr><td><code>StackedHistogram</code></td><td>1.1</td><td>Events per polarity and time bin, as consumed by RVT</td></tr>
+                        <tr><td><code>VoxelGrid</code></td><td>1.1</td><td>Signed events split linearly between time knots, as in E2VID and E-RAFT</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The two temporal kernels use bins on an absolute event-time grid and show only completed bins. They count exactly in integers and produce the same frame bit for bit whatever the order and batching of the events.<sup class="ref"><a href="#ref-changelog"></a></sup></p>
+
+            <h2 id="Tools"><span class="num">03</span>Data sources and tools</h2>
+            <dl>
+                <dt>File adapters</dt>
+                <dd>Read Prophesee EVT&nbsp;2.0 and 3.0 (RAW), AEDAT&nbsp;4.0 and <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5</a> recordings as arrays in the library's event format.<sup class="ref"><a href="#ref-repo"></a></sup></dd>
+                <dt>Recorder</dt>
+                <dd>Writes events to HDF5 alongside <code>ingest()</code> in the producer's loop; the engine never calls it.<sup class="ref"><a href="#ref-repo"></a></sup></dd>
+                <dt>Replay</dt>
+                <dd><code>replay.paced()</code> yields a recording's batches at their recorded pace. <code>replay.windows()</code>, added in 1.1, turns a recording into a frame every <i>N</i>&nbsp;µs of event time, deterministically and independently of batching.<sup class="ref"><a href="#ref-changelog"></a></sup></dd>
+                <dt>Viewer</dt>
+                <dd>Renders a snapshot as an RGB image, or shows a running engine in a window.<sup class="ref"><a href="#ref-repo"></a></sup></dd>
+            </dl>
+            <p>The library ships no vendor SDK adapters: users convert their SDK's buffers to the event format and call <code>ingest()</code>. <a href="https://en.wikipedia.org/wiki/PyTorch">PyTorch</a> is not a dependency. Instead, the documentation includes a recipe for handing snapshots to a model, and that recipe is tested in its own CI workflow.<sup class="ref"><a href="#ref-repo"></a></sup><sup class="ref"><a href="#ref-changelog"></a></sup></p>
+
+            <h2 id="Performance"><span class="num">04</span>Performance</h2>
+            <p>The version 1 performance gate checks whether the five 1.0 kernels and <code>Engine.ingest()</code> sustain at least 20&nbsp;million events per second across 150 conditions. The conditions combine three sensor resolutions (346×260, 640×480 and 1280×720), five combinations of batch size and publication interval, and uniform and clustered event distributions.<sup class="ref"><a href="#ref-perf"></a></sup> On an Apple M4 with 16&nbsp;GB of memory, every cell passed at both the kernel and the engine level, on CPython 3.11.14 and on free-threaded CPython 3.14.2t.<sup class="ref"><a href="#ref-perf"></a></sup></p>
+            <div class="table-wrap">
+                <table>
+                    <caption>Lowest gate result per kernel, engine level <span>· millions of events per second</span></caption>
+                    <thead>
+                        <tr><th scope="col">Kernel</th><th scope="col" class="num">CPython 3.11.14</th><th scope="col" class="num">CPython 3.14.2t</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>event_count</code></td><td class="num">176.0</td><td class="num">170.4</td></tr>
+                        <tr><td><code>polarity</code></td><td class="num">110.2</td><td class="num">108.1</td></tr>
+                        <tr><td><code>time_surface</code></td><td class="num">119.0</td><td class="num">104.8</td></tr>
+                        <tr><td><code>exp_decay</code></td><td class="num">127.9</td><td class="num">129.5</td></tr>
+                        <tr><td><code>timestamp_decay</code></td><td class="num">97.4</td><td class="num">80.4</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>These are back-to-back figures, so they show headroom above the 20-million target rather than the rate of a live stream. The project documents that only one machine has been measured, and that the ingest path has changed since the gate ran without being re-measured.<sup class="ref"><a href="#ref-perf"></a></sup> The two temporal kernels added in 1.1 have their own gate, which they do not meet in every cell.<sup class="ref"><a href="#ref-changelog"></a></sup></p>
+
+            <h2 id="Release_history"><span class="num">05</span>Release history</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1.1.0</strong></td><td>7 Oct 2026</td><td><code>wait_for_newer()</code>, the <code>StackedHistogram</code> and <code>VoxelGrid</code> kernels, <code>replay.windows()</code> and a PyTorch recipe. The producer-thread check now follows the thread rather than its reusable identifier. Licence changed to Apache 2.0.</td></tr>
+                        <tr><td><strong>1.0.0</strong></td><td>29 Sep 2026</td><td>First stable release, MIT licence.</td></tr>
+                        <tr><td>1.0.0rc1</td><td>29 Sep 2026</td><td>Release candidate.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="References"><span class="num">06</span>References</h2>
+            <ol class="references">
+                <li id="ref-repo"><cite><a href="https://github.com/siddiquifaras/frames2py">siddiquifaras/frames2py</a>. <span class="src">GitHub, retrieved 9 October 2026.</span></cite></li>
+                <li id="ref-perf"><cite><a href="https://siddiquifaras.github.io/frames2py/reference/performance/">Performance</a>. <span class="src">Frames2Py documentation, retrieved 9 October 2026.</span></cite></li>
+                <li id="ref-changelog"><cite><a href="https://siddiquifaras.github.io/frames2py/changelog/">Changelog</a>. <span class="src">Frames2Py documentation, retrieved 9 October 2026.</span></cite></li>
+                <li id="ref-releases"><cite><a href="https://github.com/siddiquifaras/frames2py/releases">Releases</a>. <span class="src">siddiquifaras/frames2py on GitHub, retrieved 9 October 2026.</span></cite></li>
+            </ol>
+        </article>
+    </div>
+
+    <button type="button" class="toc-fab" aria-expanded="false">
+        <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
+        Contents
+    </button>
+    <div class="scrim" hidden></div>
+    <div class="toc-sheet" role="dialog" aria-label="Contents" hidden></div>
+
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+        <div class="palette-box">
+            <div class="palette-input">
+                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                <input type="text" placeholder="Search pages, sections and links" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="palette-results" autocomplete="off" spellcheck="false">
+            </div>
+            <ul class="palette-results" id="palette-results" role="listbox"></ul>
+            <div class="palette-foot">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> move</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>esc</kbd> close</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-sign">
+                Faras Siddiqui
+                <span>Software engineer · <a href="mailto:siddiquifaras@gmail.com">siddiquifaras@gmail.com</a></span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="contact.html#Book_a_call">Book a call</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
+                <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
+                <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
+                <li><a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
