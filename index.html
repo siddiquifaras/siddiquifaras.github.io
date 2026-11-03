@@ -3,23 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Faras Siddiqui — Software Engineer</title>
-    <meta name="description" content="I build production AI systems: agentic workflows, LLM inference, graph neural networks and GPU infrastructure. Founding engineer at CVision; author of Frames2Py; neuromorphic computing research.">
-    <meta name="author" content="Faras Siddiqui">
+    <title>Faras Siddiqui</title>
+    <meta name="description" content="I build and deploy applied AI systems: agent runtimes, LLM inference and serving, evaluation, and the infrastructure that keeps them reliable, from cloud GPUs to air-gapped networks and edge hardware.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://siddiquifaras.github.io/">
+    <link rel="alternate" type="text/markdown" href="index.html.md">
+    <link rel="describedby" type="text/markdown" href="llms.txt">
     <meta property="og:type" content="profile">
-    <meta property="og:title" content="Faras Siddiqui — Software Engineer">
-    <meta property="og:description" content="I build production AI systems: agentic workflows, LLM inference, graph neural networks and GPU infrastructure. Founding engineer at CVision; author of Frames2Py; neuromorphic computing research.">
+    <meta property="og:title" content="Faras Siddiqui">
+    <meta property="og:description" content="I build and deploy applied AI systems: agent runtimes, LLM inference and serving, evaluation, and the infrastructure that keeps them reliable, from cloud GPUs to air-gapped networks and edge hardware.">
     <meta property="og:url" content="https://siddiquifaras.github.io/">
     <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
     <meta name="twitter:card" content="summary">
-    <meta name="theme-color" content="#fbfaf7">
+    <meta name="theme-color" content="#fbfaf8">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+        } catch (e) {}
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -29,7 +35,6 @@
         "jobTitle": "Founding Engineer",
         "worksFor": { "@type": "Organization", "name": "CVision", "url": "https://www.cvision.dev" },
         "alumniOf": { "@type": "CollegeOrUniversity", "name": "National University of Sciences and Technology" },
-        "knowsAbout": ["Agentic AI systems", "LLM inference", "Graph neural networks", "GPU infrastructure", "Neuromorphic computing", "Event-based vision"],
         "email": "mailto:siddiquifaras@gmail.com",
         "url": "https://siddiquifaras.github.io/",
         "image": "https://siddiquifaras.github.io/images/profile.jpeg",
@@ -42,390 +47,169 @@
     </script>
 </head>
 <body>
-
-    <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
-        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-        <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
-        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
-        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
-        <symbol id="i-file" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></symbol>
-        <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5h-11.5z"/><path d="M14 3.5V8h4.5M9.5 13h5M9.5 16.5h5"/></symbol>
-        <symbol id="i-hash" viewBox="0 0 24 24"><path d="M10 4 8 20M16 4l-2 16M4.5 9h15M4.5 15h15"/></symbol>
-        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
-        <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
-        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
-        <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></symbol>
-        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-        <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
-        <symbol id="i-net" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><path d="M7 12h3M13.7 11l3.6-4M13.7 13l3.6 4"/></symbol>
-        <symbol id="i-server" viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="7" rx="2"/><rect x="3.5" y="13" width="17" height="7" rx="2"/><path d="M7.5 7.5h.01M7.5 16.5h.01"/></symbol>
-        <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></symbol>
-        <symbol id="i-github" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></symbol>
-        <symbol id="i-linkedin" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12M7.12 20.45H3.56V9h3.56zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0"/></symbol>
-        <symbol id="i-gitlab" viewBox="0 0 24 24"><path stroke="none" fill="currentColor" d="m23.6 9.59-.03-.09L20.3.98a.85.85 0 0 0-1.63.1l-2.2 6.74H7.54L5.33 1.07a.86.86 0 0 0-1.63-.1L.43 9.5l-.03.09a6.07 6.07 0 0 0 2.01 7.01l.04.03 4.98 3.73 2.46 1.86 1.5 1.13a1.01 1.01 0 0 0 1.22 0l1.5-1.13 2.46-1.86 5.01-3.75.01-.01a6.07 6.07 0 0 0 2.01-7.01"/></symbol>
-    </svg>
-
     <a class="skip-link" href="#content">Skip to content</a>
 
     <header class="site-header">
-        <div class="header-inner">
-            <a class="brand" href="index.html">
-                <span class="monogram" aria-hidden="true">FS</span>
-                <span class="brand-name">Faras Siddiqui</span>
-                <span class="brand-context" aria-hidden="true"></span>
-            </a>
-            <nav class="site-nav" aria-label="Primary">
-                <a class="nav-link" href="index.html#Experience">Experience</a>
-                <a class="nav-link" href="index.html#Projects">Projects</a>
-                <a class="nav-link" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
-                <a class="nav-link" href="contact.html">Contact</a>
-                <button type="button" class="search-trigger" aria-label="Search">
-                    <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-                    <span class="label">Search</span>
-                    <kbd>⌘K</kbd>
-                </button>
-                <a class="button primary" href="contact.html#Book_a_call">
-                    <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
-                    Book a call
-                </a>
-                <button type="button" class="icon-button menu-button" aria-label="Menu" aria-expanded="false" aria-controls="menu-sheet">
-                    <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <div class="wrap site-header__inner">
+            <a class="site-title" href="index.html">Faras Siddiqui</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="work.html">Work</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="btn btn--secondary btn--sm nav-cv" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <button type="button" class="theme-toggle" aria-label="Switch to dark mode" hidden>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
                 </button>
             </nav>
         </div>
-        <div class="reading-progress" aria-hidden="true"></div>
     </header>
 
-    <nav class="menu-sheet" id="menu-sheet" aria-label="Menu" hidden>
-        <a href="index.html#Experience">Experience</a>
-        <a href="index.html#Projects">Projects</a>
-        <a href="frames2py.html">Frames2Py</a>
-        <a href="talon.html">TALON</a>
-        <a href="contact.html">Contact</a>
-        <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Download CV</a>
-        <a class="button primary" href="contact.html#Book_a_call">
-            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
-            Book a call
-        </a>
-    </nav>
-
-    <div class="layout" id="content">
-        <aside class="toc-rail" aria-label="Contents">
-            <div class="toc-actions">
-                <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Download CV</a>
-                <a href="mailto:siddiquifaras@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email me</a>
-                <a href="contact.html#Book_a_call"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a call</a>
-            </div>
-        </aside>
-
-        <header class="article-head">
-            <h1>Faras Siddiqui</h1>
-            <p class="dek">I build production AI systems: agentic workflows, LLM inference, graph neural networks and the GPU infrastructure underneath. I also research neuromorphic computing and event-based vision.</p>
+    <main id="content" class="wrap">
+        <header class="page-header">
+            <h1>AI systems that hold up in production</h1>
+            <p class="page-header__lede">I'm Faras Siddiqui, founding engineer at <a href="https://www.cvision.dev">CVision</a>. I build agent runtimes, LLM inference and serving, and the infrastructure that keeps them reliable, from cloud GPUs to air-gapped networks and edge hardware.</p>
         </header>
 
-        <aside class="infobox" aria-label="At a glance">
-            <div class="infobox-card">
-                <figure class="infobox-photo">
-                    <img src="images/profile.jpeg" alt="Portrait of Faras Siddiqui" width="1179" height="1420">
-                </figure>
-                <div class="infobox-title">
-                    <strong>Faras Siddiqui</strong>
-                    <span>Software Engineer</span>
-                </div>
-                <dl class="facts">
-                    <div>
-                        <dt>Role</dt>
-                        <dd>Founding Engineer, <a href="https://www.cvision.dev">CVision</a><span class="sub">June 2025 – present</span></dd>
-                    </div>
-                    <div>
-                        <dt>Focus</dt>
-                        <dd class="chips"><span>Agentic systems</span><span>LLM inference</span><span>GNNs</span><span>GPU scaling</span><span>Neuromorphic computing</span></dd>
-                    </div>
-                    <div>
-                        <dt>Education</dt>
-                        <dd>
-                            <span class="entry">BE Software Engineering<span class="sub">NUST, Islamabad · 2025</span></span>
-                            <span class="entry">American High School Diploma (AP)<span class="sub">International School of Choueifat, Sharjah · 2020</span></span>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt>Known for</dt>
-                        <dd><a href="frames2py.html">Frames2Py</a><br><a href="talon.html">TALON</a></dd>
-                    </div>
-                    <div>
-                        <dt>Email</dt>
-                        <dd class="email"><a href="mailto:siddiquifaras@gmail.com">siddiquifaras@gmail.com</a></dd>
-                    </div>
-                </dl>
-                <div class="infobox-actions">
-                    <a class="button primary" href="contact.html#Book_a_call"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Book a call</a>
-                    <div class="row">
-                        <a class="button secondary" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>CV</a>
-                        <a class="button secondary" href="mailto:siddiquifaras@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
-                    </div>
-                    <div class="social">
-                        <a href="https://github.com/siddiquifaras" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
-                        <a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
-                        <a href="https://gitlab.com/sidfaras" aria-label="GitLab"><svg class="icon" aria-hidden="true"><use href="#i-gitlab"/></svg></a>
-                    </div>
-                </div>
+        <figure class="hero">
+            <img src="images/mountain-lake.jpeg" alt="Faras sitting by a glacial lake below a snow-covered mountain while a friend takes a photo" width="640" height="641">
+        </figure>
+
+        <section aria-labelledby="focus">
+            <h2 id="focus">What I work on</h2>
+            <div class="prose">
+                <p>I build and deploy <strong>applied AI systems that have to work outside the usual cloud setup</strong>: across on-premise GPU clusters that I design to serve the load where it's needed, inside air-gapped networks where no external API is allowed, and on edge hardware with tight memory, compute and energy budgets. Most of that work is AI infrastructure: agent architectures, LLM inference and serving, evaluation, and the deployment pipelines around them.</p>
+                <p>Alongside it I work on neuromorphic computing and event-based vision, mainly the tooling that gets spiking neural networks and event-camera data into usable software.</p>
             </div>
-        </aside>
 
-        <article class="article-body prose">
-            <p class="lead">I'm a software engineer building AI systems for production: <strong>agentic workflows</strong>, <strong>LLM inference</strong>, <strong>graph neural networks</strong>, and the GPU and DevOps infrastructure they run on. I'm a founding engineer at CVision, an applied-AI consultancy in Islamabad, where the systems I delivered brought in more than US$70,000 in client revenue in my first six months.<sup class="ref"><a href="#ref-cv"></a></sup><sup class="ref"><a href="#ref-cvision"></a></sup></p>
+            <h3>Selected work</h3>
+            <ul class="dash-list prose">
+                <li><a href="work.html#noah-labs">Agent runtime for an air-gapped AI coding IDE</a> <span class="desc">— the agent runtime, GPU cluster scheduling, model evaluation and routing, and security guardrails for an on-premises coding platform at Noah Labs</span></li>
+                <li><a href="work.html#cvision">Agentic systems at CVision</a> <span class="desc">— agentic LLM workflows, RAG, GNN-based reasoning, and knowledge graphs with graph-backed memory in Neo4j, across cloud, edge and industrial deployments</span></li>
+                <li><a href="projects.html#talon">TALON</a> <span class="desc">— a neuromorphic SDK that takes spiking neural networks from PyTorch down to FPGA hardware</span></li>
+                <li><a href="projects.html#frames2py">frames2py</a> <span class="desc">— an open-source library for streaming event-camera data at more than 20 million events per second</span></li>
+            </ul>
+            <div class="actions">
+                <a class="btn btn--primary" href="work.html">Read about my work</a>
+            </div>
+        </section>
 
-            <p>Alongside that, I research <a href="https://en.wikipedia.org/wiki/Neuromorphic_computing">neuromorphic computing</a> and <a href="https://en.wikipedia.org/wiki/Event_camera">event-based vision</a>. I wrote <a href="frames2py.html">Frames2Py</a>, an open-source library that lets other code watch an event camera live while the main loop keeps running at more than 20 million events per second.<sup class="ref"><a href="#ref-f2p-perf"></a></sup> For <a href="talon.html">TALON</a>, Type 1 Compute's neuromorphic computing SDK, I built the simulation engine, the IR visualiser and a binary encoder that compresses <a href="https://en.wikipedia.org/wiki/Spiking_neural_network">spiking neural networks</a> about a thousandfold.<sup class="ref"><a href="#ref-cv"></a></sup><sup class="ref"><a href="#ref-talon"></a></sup> I've also had fixes merged into the Neuromorphic Intermediate Representation (NIR), the shared format for moving spiking networks between simulators and chips.<sup class="ref"><a href="#ref-nir-187"></a></sup><sup class="ref"><a href="#ref-nir-188"></a></sup></p>
-
-            <h2 id="Experience"><span class="num">01</span>Experience</h2>
-            <ol class="timeline">
-                <li class="current">
-                    <div class="timeline-date">Jun 2025 –<span class="now">Present</span></div>
-                    <div class="timeline-body">
-                        <h3>Founding Engineer</h3>
-                        <span class="timeline-org"><a href="https://www.cvision.dev">CVision</a> · Islamabad</span>
-                        <ul>
-                            <li>Built and deployed the distributed systems behind CVision's client-facing AI applications, bringing in <strong>US$70K+ in client revenue</strong> in my first six months.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                            <li>Build <strong>agentic systems</strong> and <strong>LLM inference</strong> pipelines, including retrieval and knowledge pipelines grounded in verified sources for operational automation.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                            <li>Lead R&amp;D on <strong>graph neural networks</strong>, knowledge graphs and efficient architectures,<sup class="ref"><a href="#ref-cv"></a></sup> and scale training and inference across GPUs.</li>
-                            <li>Own CI/CD, the DevOps stack and backend infrastructure across every product and internal tool.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                            <li>Built low-latency, spike-driven inference libraries that compress deep networks about a thousandfold (see <a href="talon.html">TALON</a>).<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                            <li>Engineered a geometry-based virtual try-on prototype, owning the service orchestration and the real-time pipelines that turn video feeds into overlay predictions.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                        </ul>
-                    </div>
+        <section aria-labelledby="experience">
+            <h2 id="experience">Experience</h2>
+            <ol class="index-list">
+                <li>
+                    <span class="when">Feb 2025 – now</span>
+                    <span class="what"><a href="work.html#cvision">Founding Engineer</a>, CVision</span>
+                    <span class="where">Remote</span>
                 </li>
                 <li>
-                    <div class="timeline-date">Jun – Sep 2024</div>
-                    <div class="timeline-body">
-                        <h3>Deep Learning Research Intern</h3>
-                        <span class="timeline-org">Optical Networks and Technologies Lab · Islamabad</span>
-                        <ul>
-                            <li>Designed and trained models for optical-signal classification and <a href="https://en.wikipedia.org/wiki/Anomaly_detection">anomaly detection</a>.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                            <li>Used <a href="https://en.wikipedia.org/wiki/Generative_adversarial_network">GANs</a> to make models robust to signal variation and <a href="https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)">transformers</a> for sequence-level interpretability.<sup class="ref"><a href="#ref-cv"></a></sup></li>
-                        </ul>
-                    </div>
-                </li>
-            </ol>
-
-            <h2 id="Projects"><span class="num">02</span>Selected projects</h2>
-
-            <section class="feature" aria-labelledby="Frames2Py">
-                <div class="feature-head">
-                    <div>
-                        <h3 id="Frames2Py" class="feature-title">Frames2Py</h3>
-                        <span class="feature-kind">Open-source Python library · 2026</span>
-                    </div>
-                    <img src="https://siddiquifaras.github.io/frames2py/assets/frames2py-logo.svg" alt="" width="140" height="30">
-                </div>
-                <div class="feature-body">
-                    <p>Lets other code watch an event camera live without slowing down the loop that consumes it. A producer thread feeds events to an <code>Engine</code>, which accumulates them and publishes read-only snapshots. Any number of consumers read the latest snapshot at their own pace, and the producer never waits for them.<sup class="ref"><a href="#ref-f2p-repo"></a></sup></p>
-                    <ul class="tags">
-                        <li class="tag">Python</li><li class="tag">NumPy</li><li class="tag">Free-threaded CPython</li><li class="tag">Event cameras</li><li class="tag">HDF5</li>
-                    </ul>
-                </div>
-                <div class="pipeline" role="img" aria-label="Data flow: an event stream enters Engine.ingest, is accumulated by a kernel, published as an immutable snapshot and read by any number of consumers.">
-                    <div class="pipeline-row"><div class="node">event stream</div><div class="node-note">camera SDK, file adapter or your own code</div></div>
-                    <div class="pipeline-edge"><span></span><code>Engine.ingest()</code></div>
-                    <div class="pipeline-row"><div class="node">kernel</div><div class="node-note">counts, polarity, time surface, decays, time bins</div></div>
-                    <div class="pipeline-edge"><span></span><code>publish</code></div>
-                    <div class="pipeline-row"><div class="node accent">snapshot</div><div class="node-note">immutable frame plus metadata, shared by every reader</div></div>
-                    <div class="pipeline-edge"><span></span><code>snapshot()</code></div>
-                    <div class="pipeline-row"><div class="consumers"><div class="node">viewer</div><div class="node">model</div><div class="node">…</div></div><div class="node-note">any thread, any number, never blocking the producer</div></div>
-                </div>
-                <div class="stats">
-                    <div class="stat"><span class="stat-value">20M<small>+/s</small></span><span class="stat-label">Events per second, lowest gate cell</span></div>
-                    <div class="stat"><span class="stat-value">150<small>/150</small></span><span class="stat-label">Benchmark cells passed on 3.11 and 3.14t</span></div>
-                    <div class="stat"><span class="stat-value">7</span><span class="stat-label">Built-in kernels, including voxel grids</span></div>
-                    <div class="stat"><span class="stat-value">1.1</span><span class="stat-label">Released 7 October 2026</span></div>
-                </div>
-                <div class="feature-links">
-                    <a class="go" href="frames2py.html">Read the full article <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                    <a href="https://siddiquifaras.github.io/frames2py/">Documentation <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
-                    <a href="https://github.com/siddiquifaras/frames2py">GitHub <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
-                    <a href="https://pypi.org/project/frames2py/">PyPI <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
-                </div>
-            </section>
-
-            <section class="feature" aria-labelledby="TALON">
-                <div class="feature-head">
-                    <div>
-                        <h3 id="TALON" class="feature-title">TALON</h3>
-                        <span class="feature-kind">Neuromorphic computing SDK · Type 1 Compute</span>
-                    </div>
-                </div>
-                <div class="feature-body">
-                    <p>TALON (Tactical AI at Low-power On-device Nodes) takes PyTorch and snnTorch models to neuromorphic hardware and Xilinx Zynq FPGAs. Like ONNX, it turns a model into an IR graph, then into a portable <code>.t1c</code> file.<sup class="ref"><a href="#ref-talon"></a></sup> I built the simulation engine, the IR visualiser and the binary encoder. The encoder stores a ten-layer network in about 200 bytes instead of 200&nbsp;KB.<sup class="ref"><a href="#ref-cv"></a></sup></p>
-                    <ul class="tags">
-                        <li class="tag">PyTorch</li><li class="tag">snnTorch</li><li class="tag">Spiking neural networks</li><li class="tag">Hybrid ANN–SNN</li><li class="tag">HDF5</li><li class="tag">hls4ml</li><li class="tag">FPGA</li>
-                    </ul>
-                </div>
-                <div class="pipeline" role="img" aria-label="TALON flow: a PyTorch model is exported with bridge.to_ir to a TALON IR graph, written to a .t1c file, then simulated on CPU or compiled for FPGA.">
-                    <div class="pipeline-row"><div class="node">PyTorch model</div><div class="node-note">SNN, ANN or hybrid, including snnTorch</div></div>
-                    <div class="pipeline-edge"><span></span><code>bridge.to_ir()</code></div>
-                    <div class="pipeline-row"><div class="node">TALON IR graph</div><div class="node-note">36 primitives, NIR-compliant LIF dynamics</div></div>
-                    <div class="pipeline-edge"><span></span><code>ir.write()</code></div>
-                    <div class="pipeline-row"><div class="node accent">.t1c file</div><div class="node-note">portable HDF5 serialisation</div></div>
-                    <div class="pipeline-edge"><span></span><code>graph · backend · viz</code></div>
-                    <div class="pipeline-row"><div class="consumers"><div class="node">graph</div><div class="node">backend</div><div class="node">viz</div></div><div class="node-note">hardware mapping; compile, simulate and profile; visualise</div></div>
-                </div>
-                <div class="stats">
-                    <div class="stat"><span class="stat-value">~1000<small>×</small></span><span class="stat-label">Smaller: a ten-layer network goes from 200&nbsp;KB to 200&nbsp;B</span></div>
-                    <div class="stat"><span class="stat-value">3</span><span class="stat-label">Pieces I built: simulator, visualiser, encoder</span></div>
-                    <div class="stat"><span class="stat-value">7</span><span class="stat-label">Packages in the SDK</span></div>
-                    <div class="stat"><span class="stat-value">36</span><span class="stat-label">IR primitives</span></div>
-                </div>
-                <div class="feature-links">
-                    <a class="go" href="talon.html">Read the full article <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-                    <a href="https://type1compute.github.io/docs/talon-ecosystem/introduction">Documentation <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
-                    <a href="https://pypi.org/project/t1c-talon/">PyPI <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
-                </div>
-            </section>
-
-            <h2 id="Open_source"><span class="num">03</span>Open-source contributions</h2>
-            <p>I contribute upstream to open-source projects in neuromorphic computing and in machine learning on constrained hardware. In the <a href="https://neuroir.org/docs/">Neuromorphic Intermediate Representation</a>, my two merged fixes repaired a type-check guard that could never fire, and added validation that reports dangling and duplicate graph edges by name, so they no longer surface later as confusing type-inference failures.<sup class="ref"><a href="#ref-nir-187"></a></sup><sup class="ref"><a href="#ref-nir-188"></a></sup> For PicoLM, which runs a one-billion-parameter language model on a board with 256&nbsp;MB of RAM, I proposed NEON-vectorised flash attention using the hardware FP16 conversions on AArch64.<sup class="ref"><a href="#ref-picolm-24"></a></sup></p>
-
-            <div class="table-wrap">
-                <table>
-                    <caption>Upstream pull requests <span>· status as of 9 October 2026</span></caption>
-                    <thead>
-                        <tr><th scope="col">Project</th><th scope="col">Change</th><th scope="col">Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><a href="https://github.com/neuromorphs/NIR/pull/187">NIR #187</a></td>
-                            <td>Fix the type-check guard in <code>read()</code>: a dictionary key lookup instead of <code>hasattr</code></td>
-                            <td><span class="pill merged">Merged</span><span class="when">5 Mar 2026</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="https://github.com/neuromorphs/NIR/pull/188">NIR #188</a></td>
-                            <td>Structural graph validation before type inference</td>
-                            <td><span class="pill merged">Merged</span><span class="when">9 Mar 2026</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="https://github.com/neuromorphs/NIR/pull/189">NIR #189</a></td>
-                            <td>Resolve scalar parameter types from graph context; guard HDF5 compression of 0-d datasets</td>
-                            <td><span class="pill open">In review</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="https://github.com/fastmachinelearning/hls4ml/pull/1439">hls4ml #1439</a></td>
-                            <td>Include the input layer in profiling plots</td>
-                            <td><span class="pill open">In review</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="https://github.com/RightNow-AI/picolm/pull/24">PicoLM #24</a></td>
-                            <td>NEON-vectorised flash attention with hardware FP16 on AArch64</td>
-                            <td><span class="pill open">In review</span></td>
-                        </tr>
-                        <tr>
-                            <td><a href="https://github.com/RightNow-AI/picolm/pull/23">PicoLM #23</a></td>
-                            <td>Raise compiler optimisation from <code>-O2</code> to <code>-O3 -ffast-math</code></td>
-                            <td><span class="pill open">In review</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 id="Skills"><span class="num">04</span>Skills</h2>
-            <div class="toolkit">
-                <div class="toolkit-group">
-                    <h3><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Agentic &amp; LLM systems</h3>
-                    <ul class="tags">
-                        <li class="tag strong">Agentic workflows</li><li class="tag strong">LLM inference</li><li class="tag">RAG</li><li class="tag">Knowledge graphs</li><li class="tag">LangChain</li><li class="tag">Prompt frameworks</li>
-                    </ul>
-                </div>
-                <div class="toolkit-group">
-                    <h3><svg class="icon" aria-hidden="true"><use href="#i-net"/></svg>Machine learning</h3>
-                    <ul class="tags">
-                        <li class="tag strong">PyTorch</li><li class="tag strong">Graph neural networks</li><li class="tag">Spiking neural networks</li><li class="tag">Transformers</li><li class="tag">GANs</li><li class="tag">TensorFlow</li><li class="tag">snnTorch</li>
-                    </ul>
-                </div>
-                <div class="toolkit-group">
-                    <h3><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg>Infrastructure</h3>
-                    <ul class="tags">
-                        <li class="tag strong">GPU scaling</li><li class="tag strong">Docker</li><li class="tag">Kubernetes</li><li class="tag">CI/CD</li><li class="tag">GitHub Actions</li><li class="tag">Linux</li><li class="tag">Self-hosted ops</li><li class="tag">GCP</li><li class="tag">Azure</li>
-                    </ul>
-                </div>
-                <div class="toolkit-group">
-                    <h3><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Languages &amp; backend</h3>
-                    <ul class="tags">
-                        <li class="tag strong">Python</li><li class="tag">C++</li><li class="tag">TypeScript</li><li class="tag">JavaScript</li><li class="tag">Node.js</li><li class="tag">FastAPI</li><li class="tag">Express</li><li class="tag">Flask</li><li class="tag">MongoDB</li><li class="tag">MySQL</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h2 id="Education"><span class="num">05</span>Education</h2>
-            <ol class="timeline">
-                <li>
-                    <div class="timeline-date">2021 – 2025</div>
-                    <div class="timeline-body">
-                        <h3>Bachelor of Engineering, Software Engineering</h3>
-                        <span class="timeline-org"><a href="https://en.wikipedia.org/wiki/National_University_of_Sciences_and_Technology">National University of Sciences and Technology</a> (NUST) · Islamabad</span>
-                        <p>Concentrated on deep learning, machine learning, computer vision, natural language processing, distributed systems and software architecture.<sup class="ref"><a href="#ref-cv"></a></sup><sup class="ref"><a href="#ref-old-education"></a></sup></p>
-                    </div>
+                    <span class="when">Feb – Oct 2026</span>
+                    <span class="what"><a href="work.html#noah-labs">AI Systems Engineer (Contract)</a>, Noah Labs</span>
+                    <span class="where">San Francisco, remote</span>
                 </li>
                 <li>
-                    <div class="timeline-date">2018 – 2020</div>
-                    <div class="timeline-body">
-                        <h3>American High School Diploma with Advanced Placement</h3>
-                        <span class="timeline-org">International School of Choueifat · Sharjah, UAE</span>
-                        <p>American curriculum with Advanced Placement examinations.<sup class="ref"><a href="#ref-old-education"></a></sup></p>
-                    </div>
+                    <span class="when">Jun – Sep 2024</span>
+                    <span class="what"><a href="work.html#ont-lab">Deep Learning Research Intern</a>, Optical Networks and Technologies Lab, NUST</span>
+                    <span class="where">Islamabad</span>
                 </li>
             </ol>
+        </section>
 
-
-            <h2 id="References"><span class="num">06</span>References</h2>
-            <ol class="references">
-                <li id="ref-cv"><cite>Faras Siddiqui. <a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Curriculum vitae</a> <span class="src">(PDF)</span>.</cite></li>
-                <li id="ref-cvision"><cite><a href="https://www.cvision.dev">CVision</a>. <span class="src">cvision.dev, retrieved 9 October 2026.</span></cite></li>
-                <li id="ref-f2p-repo"><cite><a href="https://github.com/siddiquifaras/frames2py">siddiquifaras/frames2py</a>. <span class="src">GitHub, retrieved 9 October 2026.</span></cite></li>
-                <li id="ref-f2p-perf"><cite><a href="https://siddiquifaras.github.io/frames2py/reference/performance/">Performance</a>. <span class="src">Frames2Py documentation, retrieved 9 October 2026.</span></cite></li>
-                <li id="ref-talon"><cite><a href="https://type1compute.github.io/docs/talon-ecosystem/introduction">TALON Ecosystem: Introduction</a>. <span class="src">Type 1 Compute documentation, retrieved 9 October 2026.</span></cite></li>
-                <li id="ref-nir-187"><cite>Faras Siddiqui. <a href="https://github.com/neuromorphs/NIR/pull/187">fix: use dict key lookup instead of hasattr in read()</a>. <span class="src">neuromorphs/NIR pull request #187, 25 February 2026.</span></cite></li>
-                <li id="ref-nir-188"><cite>Faras Siddiqui. <a href="https://github.com/neuromorphs/NIR/pull/188">fix: add structural graph validation before type inference</a>. <span class="src">neuromorphs/NIR pull request #188, 25 February 2026.</span></cite></li>
-                <li id="ref-picolm-24"><cite>Faras Siddiqui. <a href="https://github.com/RightNow-AI/picolm/pull/24">feat: NEON-vectorized flash attention with hardware FP16 on AArch64</a>. <span class="src">RightNow-AI/picolm pull request #24, 13 March 2026.</span></cite></li>
-                <li id="ref-old-education"><cite>Faras Siddiqui. <a href="https://github.com/siddiquifaras/siddiquifaras.github.io/blob/f8d37bb/education.html">Education</a>. <span class="src">Earlier version of this site.</span></cite></li>
-            </ol>
-        </article>
-    </div>
-
-    <button type="button" class="toc-fab" aria-expanded="false">
-        <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
-        Contents
-    </button>
-    <div class="scrim" hidden></div>
-    <div class="toc-sheet" role="dialog" aria-label="Contents" hidden></div>
-
-    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
-        <div class="palette-box">
-            <div class="palette-input">
-                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-                <input type="text" placeholder="Search pages, sections and links" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="palette-results" autocomplete="off" spellcheck="false">
+        <section aria-labelledby="open-source">
+            <h2 id="open-source">Open source</h2>
+            <p class="prose">I build and contribute to libraries for neuromorphic computing, event-based vision and on-device inference:</p>
+            <div class="rule-grid">
+                <div>
+                    <h3><a href="projects.html#talon">TALON</a></h3>
+                    <p>Neuromorphic SDK, from PyTorch to FPGA</p>
+                    <span class="role">Built all 7 packages</span>
+                </div>
+                <div>
+                    <h3><a href="projects.html#frames2py">frames2py</a></h3>
+                    <p>Event-camera streaming for Python</p>
+                    <span class="role">Author</span>
+                </div>
+                <div>
+                    <h3><a href="https://github.com/neuromorphs/NIR">NIR</a></h3>
+                    <p>Neuromorphic Intermediate Representation</p>
+                    <span class="role">Contributor, 2 merged fixes</span>
+                </div>
+                <div>
+                    <h3><a href="https://github.com/RightNow-AI/picolm">PicoLM</a></h3>
+                    <p>A 1B-parameter LLM on a $10 board</p>
+                    <span class="role">Contributor, ARM NEON inference</span>
+                </div>
             </div>
-            <ul class="palette-results" id="palette-results" role="listbox"></ul>
-            <div class="palette-foot">
-                <span><kbd>↑</kbd> <kbd>↓</kbd> move</span>
-                <span><kbd>↵</kbd> open</span>
-                <span><kbd>esc</kbd> close</span>
+            <div class="actions">
+                <a class="btn btn--primary" href="projects.html">All projects</a>
+                <a class="btn btn--secondary" href="https://github.com/siddiquifaras">GitHub</a>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section aria-labelledby="writing">
+            <h2 id="writing">Recent posts</h2>
+            <article class="post-card">
+                <h3><a href="blog-agents.html">Your agent isn't dumb. Your harness is.</a></h3>
+                <p class="meta"><time datetime="2026-10-09">9 Oct 2026</time> · AI agents</p>
+                <p class="summary">Harnesses, context budgets, memory, and why a DAG is usually the wrong shape for an agent.</p>
+            </article>
+            <article class="post-card">
+                <h3><a href="blog-gpu-engineering.html">It's worth knowing what your GPU is actually doing</a></h3>
+                <p class="meta"><time datetime="2026-07-22">22 Jul 2026</time> · GPUs, inference</p>
+                <p class="summary">Inference is mostly a memory problem. What that means for batching, KV caches and kernels.</p>
+            </article>
+            <article class="post-card">
+                <h3><a href="blog-efficient-compute.html">Cheap watts win</a></h3>
+                <p class="meta"><time datetime="2026-05-14">14 May 2026</time> · Efficient compute</p>
+                <p class="summary">Power, cooling and edge budgets matter more than raw GPU counts.</p>
+            </article>
+            <div class="actions">
+                <a class="btn btn--secondary" href="blog.html">All posts</a>
+            </div>
+        </section>
+
+        <section aria-labelledby="contact">
+            <h2 id="contact">Get in touch</h2>
+            <p class="prose">Email is the quickest way to reach me, or you can book a time on my calendar.</p>
+            <div class="actions">
+                <a class="btn btn--primary" href="mailto:siddiquifaras@gmail.com">Email me</a>
+                <a class="btn btn--secondary" href="contact.html#book">Book a call</a>
+            </div>
+        </section>
+    </main>
 
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-sign">
-                Faras Siddiqui
-                <span>Software engineer · <a href="mailto:siddiquifaras@gmail.com">siddiquifaras@gmail.com</a></span>
-            </div>
-            <ul class="footer-links">
-                <li><a href="contact.html#Book_a_call">Book a call</a></li>
+        <div class="wrap site-footer__inner">
+            <span>© 2026 Faras Siddiqui</span>
+            <ul>
+                <li><a href="mailto:siddiquifaras@gmail.com">Email</a></li>
                 <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
                 <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
                 <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
-                <li><a href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a></li>
             </ul>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var button = document.querySelector('.theme-toggle');
+            function sync() {
+                var dark = root.dataset.theme === 'dark';
+                button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(dark));
+            }
+            button.hidden = false;
+            sync();
+            button.addEventListener('click', function () {
+                var dark = root.dataset.theme !== 'dark';
+                if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+                sync();
+            });
+        })();
+    </script>
 </body>
 </html>

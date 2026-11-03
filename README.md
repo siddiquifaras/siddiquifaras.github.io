@@ -1,34 +1,38 @@
 # siddiquifaras.github.io
 
-Personal site of Faras Siddiqui, laid out like an encyclopedia article: contents rail, infobox, numbered sections and footnoted sources.
+Personal site of Faras Siddiqui. Plain HTML and CSS with no build step. All content is in the HTML, so every page reads fully with scripts off, in search engines and in AI crawlers. The only JavaScript is a small inline script for the light/dark toggle, which stays hidden when scripts are off.
 
 Live: [https://siddiquifaras.github.io](https://siddiquifaras.github.io)
 
 ## Structure
 
 ```
-├── index.html               # Main article: experience, projects, open source, skills, education
-├── frames2py.html           # Article on Frames2Py
-├── talon.html               # Article on TALON and my work on it
-├── contact.html             # Contact links and the Google Calendar booking page
-├── 404.html                 # Not-found page
-├── bio.html, education.html, industry.html,
-│   pet-projects.html, publications.html   # Redirects from the old site's URLs
-├── styles.css               # All styling (light theme)
-├── script.js                # Contents rail, footnotes, hover previews, ⌘K search
+├── index.html          # Home: summary, selected work, experience, open source
+├── work.html           # Experience in detail
+├── projects.html       # TALON, frames2py, upstream pull requests
+├── about.html          # Background, education, skills
+├── contact.html        # Contact details and the booking calendar
+├── blog.html           # Blog index
+├── blog-*.html         # Blog posts
+├── 404.html
+├── *.html.md           # Markdown version of each page (llmstxt.org convention)
+├── llms.txt            # Index and guidance for AI assistants
+├── llms-full.txt       # Every page in one Markdown file
+├── robots.txt          # Allows all crawlers, AI crawlers listed explicitly
+├── sitemap.xml
+├── styles.css
 ├── favicon.svg
-├── robots.txt, sitemap.xml
-├── images/                  # Profile photo
-└── files/                   # CV (PDF)
+├── images/             # Portrait, home photo, blog/ meme images
+├── files/              # CV (PDF)
+└── frames2py.html, talon.html, bio.html, education.html, industry.html,
+    pet-projects.html, publications.html   # Redirects from older URLs
 ```
 
-Plain HTML, CSS and JavaScript; no build step. Fonts come from Google Fonts (Newsreader, Inter, JetBrains Mono).
+Fonts: Source Serif 4, Inter and JetBrains Mono from Google Fonts.
 
 ## Editing
 
-- **Footnotes:** cite with `<sup class="ref"><a href="#ref-key"></a></sup>` and add `<li id="ref-key"><cite>…</cite></li>` to the page's `ol.references`. Numbers and back-links are assigned in order of first use when the page loads.
-- **Contents rail:** built from every `h2[id]` and `h3[id]` inside `.article-body`.
-- **Search and previews:** the page list, sections and quick actions live at the top of `script.js`.
+Each page's content lives in its `.html` file between `<main>` and `</main>`. When page content changes, update the matching `.html.md` file and `llms-full.txt` too, so the Markdown versions stay in step with the HTML.
 
 ## Local preview
 

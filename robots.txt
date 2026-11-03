@@ -1,5 +1,28 @@
+# Everything on this site may be crawled, indexed, quoted and used by
+# search engines and AI assistants, including for answering questions
+# about me. A Markdown summary for language models is at /llms.txt.
+
 User-agent: *
 Allow: /
 
-Sitemap: https://siddiquifaras.github.io/sitemap.xml
+# AI crawlers and assistants, listed explicitly so the intent is clear.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: cohere-ai
+User-agent: CCBot
+Allow: /
 
+Sitemap: https://siddiquifaras.github.io/sitemap.xml

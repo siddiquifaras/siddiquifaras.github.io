@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cheap watts win · Faras Siddiqui</title>
+    <meta name="description" content="Power, cooling and tiny edge budgets are shaping AI more than raw GPU counts. Why energy- and compute-efficient systems will come out ahead.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://siddiquifaras.github.io/blog-efficient-compute.html">
+    <link rel="alternate" type="text/markdown" href="blog-efficient-compute.html.md">
+    <link rel="describedby" type="text/markdown" href="llms.txt">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cheap watts win · Faras Siddiqui">
+    <meta property="og:description" content="Power, cooling and tiny edge budgets are shaping AI more than raw GPU counts. Why energy- and compute-efficient systems will come out ahead.">
+    <meta property="og:url" content="https://siddiquifaras.github.io/blog-efficient-compute.html">
+    <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#fbfaf8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Cheap watts win",
+        "description": "Power, cooling and tiny edge budgets are shaping AI more than raw GPU counts. Why energy- and compute-efficient systems will come out ahead.",
+        "datePublished": "2026-05-14",
+        "url": "https://siddiquifaras.github.io/blog-efficient-compute.html",
+        "image": "https://siddiquifaras.github.io/images/profile.jpeg",
+        "author": { "@type": "Person", "name": "Faras Siddiqui", "url": "https://siddiquifaras.github.io/" }
+    }
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap site-header__inner">
+            <a class="site-title" href="index.html">Faras Siddiqui</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="work.html">Work</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html" aria-current="page">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="btn btn--secondary btn--sm nav-cv" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <button type="button" class="theme-toggle" aria-label="Switch to dark mode" hidden>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content" class="wrap">
+        <article>
+            <header class="page-header">
+                <h1>Cheap watts win</h1>
+                <p class="page-header__lede">Everyone is racing to make AI cheaper. I think the people who come out ahead are the ones who waste the least power doing it.</p>
+                <p class="page-meta"><time datetime="2026-05-14">14 May 2026</time><span>Efficient compute, edge AI, neuromorphic computing</span></p>
+            </header>
+
+            <div class="prose post-body">
+                <p>Everyone is trying to make AI cheaper right now. Token prices keep falling. Every few months somebody ships a smaller model that roughly matches last year's big one. And pretty much every infra conversation I've had this year ends up at the same question: how do we serve more, for less?</p>
+
+                <p>My take is simple. The teams that win the next few years won't be the ones with the most GPUs. They'll be the ones who get the most useful work out of every watt and every chip they already have.</p>
+
+                <h2>The GPU is only the start of the bill</h2>
+                <p>When people price out AI they look at the GPU. Fair enough, those things are not cheap. But the GPU is where the bill starts.</p>
+                <p>An H100 SXM is rated at up to 700 W. A B200 sits around 1,000 W. Put eight of them in a server, a few servers in a rack, a lot of racks in a hall, and every one of those watts turns into heat that you then pay to get rid of. Cooling, power delivery, the building, the grid connection. Somebody pays for all of it, and that cost lands in the price of your tokens whether you see it or not.</p>
+                <p>At the global scale the numbers get kind of silly. The <a href="https://www.iea.org/reports/energy-and-ai">IEA estimates</a> data centres used around 415 TWh of electricity in 2024, about 1.5% of all the electricity used on the planet, and expects that to more than double to roughly 945 TWh by 2030. AI is the biggest reason why.</p>
+
+                <figure class="figure meme" data-md="Meme: This Is Fine, a cartoon dog sitting calmly in a burning room. Caption: the cooling loop at 3am after someone launches a quick sweep on the whole cluster.">
+                    <div class="meme__frame">
+                        <p class="meme__caption">the cooling loop at 3am after someone launches a "quick" sweep on the whole cluster</p>
+                        <img src="images/blog/this-is-fine.jpg" alt="This Is Fine meme: a cartoon dog sitting calmly in a room that is on fire" width="580" height="282" loading="lazy">
+                    </div>
+                </figure>
+
+                <h2>Power is the real bottleneck now</h2>
+                <p>For a long time the limit was how many chips you could buy. In a lot of places the limit now is how much power you can get into the building, and how quickly. You can order more GPUs. You can't really order more grid.</p>
+                <p>Once that's your constraint, efficiency stops being a nice extra. If your stack does the same job on half the energy, you can serve twice the traffic from the same power envelope. At that point efficiency basically is your capacity plan.</p>
+
+                <h2>The edge has almost nothing</h2>
+                <p>Then there's the edge, where I've spent a lot of my time. On edge and industrial hardware you don't get a rack. You get a small board, a tight memory budget, maybe a battery, a thermal limit, and a hardware team who will remind you about that thermal limit in every single meeting.</p>
+                <p>There's no "just add another GPU" out there. The model either fits inside the memory, compute and energy budget, or it doesn't ship. I actually like that. It forces a better question. You stop asking what's the biggest model you can run and start asking what's the smallest thing that does the job properly.</p>
+                <p>It's a big part of why I got into neuromorphic computing. Spiking networks do their work as events, when something changes, instead of crunching every value on every tick. Pair that with an event camera, which only reports the pixels that changed, and you get a pipeline that sits mostly idle when the world is idle. For small hardware that's exactly the shape you want.</p>
+                <p>When I worked on compression for spiking networks, taking a ten-layer network from about 200 KB down to about 200 bytes wasn't a party trick. On small neuromorphic hardware, savings like that decide what you can deploy at all.</p>
+
+                <h2>Same story in the data centre, bigger numbers</h2>
+                <p>Even with proper GPUs, most of the waste I've seen is pretty boring. GPUs sitting half idle because requests aren't batched well. KV cache memory reserved and never used. One model per GPU when two or three could share it. A giant model doing a job a small one does just as well.</p>
+                <p>When I was setting up inference on on-prem GPU clusters, most of the wins came from exactly that boring stuff. Scheduling so the GPUs weren't sitting around, packing more concurrent requests onto each card, and routing every task to the cheapest model that could actually handle it. None of it looks impressive in a demo. All of it shows up on the bill.</p>
+
+                <h2>Where I think this goes</h2>
+                <ul>
+                    <li>Smaller, specialised models doing most of the everyday work, with the big ones only called when a task actually needs them.</li>
+                    <li>Inference engines and kernels that treat memory traffic as seriously as FLOPs, because that's usually where the time goes.</li>
+                    <li>More AI running on the device itself. Shipping every request to a data centre costs power, bandwidth and latency, and some places don't have a connection at all.</li>
+                    <li>Hardware designed around energy first, neuromorphic chips included.</li>
+                </ul>
+                <p>Raw scale still matters, I'm not pretending it doesn't. But when anyone can rent the same GPUs, the advantage goes to whoever wastes the least. Watts are turning into the real currency of this whole thing. Spend them carefully.</p>
+            </div>
+
+            <p class="post-footer">Written by Faras Siddiqui. More posts on the <a href="blog.html">blog</a>.</p>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__inner">
+            <span>© 2026 Faras Siddiqui</span>
+            <ul>
+                <li><a href="mailto:siddiquifaras@gmail.com">Email</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
+                <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
+                <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var button = document.querySelector('.theme-toggle');
+            function sync() {
+                var dark = root.dataset.theme === 'dark';
+                button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(dark));
+            }
+            button.hidden = false;
+            sync();
+            button.addEventListener('click', function () {
+                var dark = root.dataset.theme !== 'dark';
+                if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+                sync();
+            });
+        })();
+    </script>
+</body>
+</html>

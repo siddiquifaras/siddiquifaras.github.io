@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About · Faras Siddiqui</title>
+    <meta name="description" content="About Faras Siddiqui: background, education and skills.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://siddiquifaras.github.io/about.html">
+    <link rel="alternate" type="text/markdown" href="about.html.md">
+    <link rel="describedby" type="text/markdown" href="llms.txt">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About · Faras Siddiqui">
+    <meta property="og:description" content="About Faras Siddiqui: background, education and skills.">
+    <meta property="og:url" content="https://siddiquifaras.github.io/about.html">
+    <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#fbfaf8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+        } catch (e) {}
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap site-header__inner">
+            <a class="site-title" href="index.html">Faras Siddiqui</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="work.html">Work</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html">Blog</a>
+                <a href="about.html" aria-current="page">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="btn btn--secondary btn--sm nav-cv" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <button type="button" class="theme-toggle" aria-label="Switch to dark mode" hidden>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content" class="wrap">
+        <header class="page-header">
+            <h1>About</h1>
+        </header>
+
+        <div class="prose">
+            <figure class="portrait portrait--float">
+                <img src="images/profile.jpeg" alt="Faras Siddiqui" width="1179" height="1420">
+            </figure>
+            <p>I'm Faras Siddiqui, a software engineer who builds and deploys applied AI systems. I'm a founding engineer at <a href="https://www.cvision.dev">CVision</a>, where I set up the company's core AI infrastructure, lead production deployments on cloud, edge and industrial stacks, and grew the engineering team to 7. CVision reached $150K+ in first-year revenue and $2M+ in partner deal value, working with industrial, research-led, SME, and YC- and Antler-backed partners.</p>
+            <p>Most of my work is AI infrastructure: agent architectures, LLM inference and serving, evaluation, and the pipelines that keep them reliable. A lot of it runs under hard constraints: air-gapped networks where no cloud API is allowed, and edge hardware with tight memory, compute and energy budgets. At Noah Labs I built the core AI infrastructure for an on-premises, air-gapped AI coding platform, working directly with the CTO: the agent runtime, GPU cluster scheduling and inference orchestration with vLLM, model evaluation and routing, and the security guardrails around autonomous agents.</p>
+            <p>I also work on neuromorphic computing and event-based vision. I built all seven packages of <a href="projects.html#talon">TALON</a>, an SDK that takes spiking neural networks from PyTorch down to FPGA hardware, and I wrote <a href="projects.html#frames2py">frames2py</a>, an open-source library for streaming event-camera data. I've contributed fixes upstream to the <a href="https://github.com/neuromorphs/NIR">Neuromorphic Intermediate Representation</a>.</p>
+        </div>
+
+        <h2 id="education">Education</h2>
+        <ol class="index-list prose">
+            <li>
+                <span class="when">2021 – 2025</span>
+                <span class="what">B.Eng. in Software Engineering, National University of Sciences and Technology (NUST)</span>
+                <span class="where">Islamabad</span>
+            </li>
+            <li>
+                <span class="when">2018 – 2020</span>
+                <span class="what">American High School Diploma with Advanced Placement, International School of Choueifat</span>
+                <span class="where">Sharjah</span>
+            </li>
+        </ol>
+
+        <h2 id="skills">Skills</h2>
+        <dl class="skills">
+            <div>
+                <dt>AI and LLMs</dt>
+                <dd><ul class="tags"><li>LLM agents</li><li>Multi-agent systems</li><li>Tool calling</li><li>RAG</li><li>Knowledge graphs</li><li>Graph-backed memory</li><li>LLM evaluation</li><li>Inference and serving</li><li>Model routing</li><li>vLLM</li></ul></dd>
+            </div>
+            <div>
+                <dt>Machine learning</dt>
+                <dd><ul class="tags"><li>PyTorch</li><li>TensorFlow</li><li>Transformers</li><li>GNNs</li><li>SNNs</li><li>Computer vision</li><li>Multimodal pipelines</li><li>Event-based vision</li></ul></dd>
+            </div>
+            <div>
+                <dt>Infra and MLOps</dt>
+                <dd><ul class="tags"><li>GPU cluster scheduling</li><li>Docker</li><li>Kubernetes</li><li>GitHub Actions</li><li>CI/CD</li><li>Linux</li><li>Lambda Labs</li><li>GCP</li><li>AWS</li><li>Azure</li></ul></dd>
+            </div>
+            <div>
+                <dt>Backend and data</dt>
+                <dd><ul class="tags"><li>FastAPI</li><li>Flask</li><li>Node.js</li><li>REST</li><li>SSE</li><li>Neo4j</li><li>SQLite</li><li>MongoDB</li><li>MySQL</li><li>HDF5</li></ul></dd>
+            </div>
+            <div>
+                <dt>Languages</dt>
+                <dd><ul class="tags"><li>Python</li><li>TypeScript</li><li>JavaScript</li><li>C++</li><li>SQL</li><li>Bash</li></ul></dd>
+            </div>
+        </dl>
+
+        <div class="actions">
+            <a class="btn btn--primary" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">Download CV</a>
+            <a class="btn btn--secondary" href="contact.html">Contact</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__inner">
+            <span>© 2026 Faras Siddiqui</span>
+            <ul>
+                <li><a href="mailto:siddiquifaras@gmail.com">Email</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
+                <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
+                <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var button = document.querySelector('.theme-toggle');
+            function sync() {
+                var dark = root.dataset.theme === 'dark';
+                button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(dark));
+            }
+            button.hidden = false;
+            sync();
+            button.addEventListener('click', function () {
+                var dark = root.dataset.theme !== 'dark';
+                if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+                sync();
+            });
+        })();
+    </script>
+</body>
+</html>

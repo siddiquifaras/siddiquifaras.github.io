@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>It's worth knowing what your GPU is actually doing · Faras Siddiqui</title>
+    <meta name="description" content="Why LLM inference is mostly a memory problem, what that means for batching, KV caches and kernels, and why GPU-level engineering is becoming part of the job.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://siddiquifaras.github.io/blog-gpu-engineering.html">
+    <link rel="alternate" type="text/markdown" href="blog-gpu-engineering.html.md">
+    <link rel="describedby" type="text/markdown" href="llms.txt">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="It's worth knowing what your GPU is actually doing · Faras Siddiqui">
+    <meta property="og:description" content="Why LLM inference is mostly a memory problem, what that means for batching, KV caches and kernels, and why GPU-level engineering is becoming part of the job.">
+    <meta property="og:url" content="https://siddiquifaras.github.io/blog-gpu-engineering.html">
+    <meta property="og:image" content="https://siddiquifaras.github.io/images/profile.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#fbfaf8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        try {
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+        } catch (e) {}
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "It's worth knowing what your GPU is actually doing",
+        "description": "Why LLM inference is mostly a memory problem, what that means for batching, KV caches and kernels, and why GPU-level engineering is becoming part of the job.",
+        "datePublished": "2026-07-22",
+        "url": "https://siddiquifaras.github.io/blog-gpu-engineering.html",
+        "image": "https://siddiquifaras.github.io/images/profile.jpeg",
+        "author": { "@type": "Person", "name": "Faras Siddiqui", "url": "https://siddiquifaras.github.io/" }
+    }
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap site-header__inner">
+            <a class="site-title" href="index.html">Faras Siddiqui</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="work.html">Work</a>
+                <a href="projects.html">Projects</a>
+                <a href="blog.html" aria-current="page">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="btn btn--secondary btn--sm nav-cv" href="files/Faras_Siddiqui_CV_AI_Engineer.pdf">CV</a>
+                <button type="button" class="theme-toggle" aria-label="Switch to dark mode" hidden>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content" class="wrap">
+        <article>
+            <header class="page-header">
+                <h1>It's worth knowing what your GPU is actually doing</h1>
+                <p class="page-header__lede">For years you could do ML without caring about the hardware. With inference costs where they are, GPU-level engineering is turning into a normal part of the job.</p>
+                <p class="page-meta"><time datetime="2026-07-22">22 Jul 2026</time><span>GPUs, LLM inference, performance</span></p>
+            </header>
+
+            <div class="prose post-body">
+                <p>For a long time you could do machine learning without thinking about the hardware at all. Call the framework, pick a cloud instance, go. The abstractions were good enough that knowing what a warp is felt like trivia for people who write drivers.</p>
+                <p>That's changing, and quicker than I expected.</p>
+
+                <h2>Inference made it everyone's problem</h2>
+                <p>Training is a handful of big runs. Inference is every request, from every user, for as long as the product exists. Once you're serving real traffic, small efficiency wins stop being small, because you collect them on every single token you generate. A kernel that's a bit faster or a cache that wastes less memory turns straight into fewer GPUs.</p>
+                <p>And when you run your own hardware, nobody else is optimising that for you. On the on-prem clusters I've worked with, you decide which model goes on which GPU, how much memory each one gets for its KV cache, how many requests share a card, and when a smaller model is good enough. Get those calls wrong and you're buying more hardware. Get them right and the same cluster quietly serves a lot more.</p>
+
+                <h2>Most of the time you're waiting on memory</h2>
+                <p>The thing that surprised me most when I started digging in: during text generation the GPU spends a lot of its time waiting.</p>
+                <p>Every new token means reading the model's weights out of GPU memory. At small batch sizes the GPU does very little maths per byte it reads, so it finishes the maths fast and then sits there waiting for the next chunk of data. In that regime the big FLOPs number on the spec sheet barely matters. Memory bandwidth does.</p>
+
+                <figure class="figure" data-md="Diagram: a simplified roofline. Performance rises with arithmetic intensity along a memory-bound slope until the ridge point, then flattens at the compute roof. Token-by-token decode at small batch sizes sits low on the memory-bound slope; prefill and large batches sit near the compute roof.">
+                    <div class="diagram">
+                        <svg class="svg-diagram" viewBox="0 0 640 270" role="img" aria-labelledby="roofline-title">
+                            <title id="roofline-title">Simplified roofline: memory-bound versus compute-bound</title>
+                            <line class="line" x1="60" y1="20" x2="60" y2="220"/>
+                            <line class="line" x1="60" y1="220" x2="620" y2="220"/>
+                            <path class="line line--accent" d="M60 205L300 60H620"/>
+                            <line class="line dashed" x1="300" y1="60" x2="300" y2="220"/>
+                            <text class="muted" x="306" y="214">ridge point</text>
+                            <text x="118" y="128" transform="rotate(-31 118 128)">memory-bound</text>
+                            <text x="440" y="50" text-anchor="middle">compute-bound (the roof)</text>
+                            <circle class="dot dot--amber" cx="130" cy="163" r="6"/>
+                            <text x="144" y="182">decode, small batch</text>
+                            <circle class="dot" cx="470" cy="60" r="6"/>
+                            <text x="470" y="84" text-anchor="middle">prefill, big batches</text>
+                            <text class="muted" x="340" y="250" text-anchor="middle">arithmetic intensity (FLOPs per byte moved)</text>
+                            <text class="muted" x="22" y="120" text-anchor="middle" transform="rotate(-90 22 120)">achieved FLOP/s</text>
+                        </svg>
+                    </div>
+                    <figcaption>The roofline model, simplified. Left of the ridge you're limited by how fast you can move bytes. Right of it, by how fast you can do maths.</figcaption>
+                </figure>
+
+                <p>That's why so much of the good inference work is really memory work:</p>
+                <ul>
+                    <li><strong>Batching.</strong> Serve more requests at once so every weight you read gets reused for more tokens.</li>
+                    <li><strong>Paging the KV cache.</strong> The <a href="https://arxiv.org/abs/2309.06180">vLLM paper</a> found that serving systems at the time wasted 60 to 80 percent of their KV cache memory on fragmentation and over-reservation. Their PagedAttention got that under 4 percent and improved throughput by 2 to 4 times over the systems they compared against.</li>
+                    <li><strong>Quantisation.</strong> Fewer bytes per weight means fewer bytes to move.</li>
+                    <li><strong>Kernel fusion.</strong> Do several steps in one kernel so intermediate results never take the round trip out to main memory and back. <a href="https://arxiv.org/abs/2205.14135">FlashAttention</a> is the famous one.</li>
+                </ul>
+
+                <figure class="figure meme" data-md="Meme: a black cat sitting in a corner, captioned [SOBBING]. Caption: nvidia-smi showing 100% utilisation while the job is mostly waiting on memory.">
+                    <div class="meme__frame">
+                        <p class="meme__caption">nvidia-smi: 100% utilisation<br>the job: mostly waiting on memory</p>
+                        <img src="images/blog/sobbing-cat.jpg" alt="A black cat sitting facing a corner, captioned [SOBBING]" width="640" height="589" loading="lazy">
+                    </div>
+                    <figcaption>That utilisation number only tells you a kernel was running, not that the GPU was doing useful maths. Use a profiler.</figcaption>
+                </figure>
+
+                <h2>It matters on tiny hardware too</h2>
+                <p>This isn't only a data centre thing. I opened a <a href="https://github.com/RightNow-AI/picolm/pull/24">pull request</a> for PicoLM, a project that runs a one-billion-parameter model on a $10 board with 256 MB of RAM. The attention code was converting half-precision values to floats one at a time in software, around a dozen scalar instructions each. Spread across every head, every layer and every token of context, that added up to almost half the cost of the matrix maths. On ARM chips (AArch64) there's already a hardware instruction that converts four values at once. Using it, plus vectorising the loops around it, should drop attention from roughly 48% of the matmul cost to under 2%, by my estimate in the PR.</p>
+                <p>Nothing clever, honestly. You just had to know the instruction existed and look at where the time was going.</p>
+
+                <h2>What I'd actually learn</h2>
+                <p>You don't need to become a full-time kernel engineer. But if you work anywhere near AI infrastructure, I'd get comfortable with:</p>
+                <ul>
+                    <li>How GPU memory is laid out (HBM, shared memory, registers) and roughly how fast each one is.</li>
+                    <li>What makes a workload memory-bound or compute-bound. The roofline model is a good place to start.</li>
+                    <li>Reading a profiler like Nsight Systems or Nsight Compute instead of guessing.</li>
+                    <li>Enough CUDA or Triton to read a kernel and understand why it's fast or slow.</li>
+                    <li>How serving engines like vLLM handle batching, scheduling and the KV cache.</li>
+                </ul>
+                <p>If you can't explain why your model is slow, you'll keep fixing it by buying more GPUs. That gets expensive really quickly, and these days it's often not even an option.</p>
+            </div>
+
+            <p class="post-footer">Written by Faras Siddiqui. More posts on the <a href="blog.html">blog</a>.</p>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap site-footer__inner">
+            <span>© 2026 Faras Siddiqui</span>
+            <ul>
+                <li><a href="mailto:siddiquifaras@gmail.com">Email</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-faras-siddiqui/">LinkedIn</a></li>
+                <li><a href="https://github.com/siddiquifaras">GitHub</a></li>
+                <li><a href="https://gitlab.com/sidfaras">GitLab</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var button = document.querySelector('.theme-toggle');
+            function sync() {
+                var dark = root.dataset.theme === 'dark';
+                button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(dark));
+            }
+            button.hidden = false;
+            sync();
+            button.addEventListener('click', function () {
+                var dark = root.dataset.theme !== 'dark';
+                if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+                try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+                sync();
+            });
+        })();
+    </script>
+</body>
+</html>
