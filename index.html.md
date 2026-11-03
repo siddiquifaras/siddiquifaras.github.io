@@ -77,7 +77,7 @@ Power, cooling and edge budgets matter more than raw GPU counts.
 
 ## Get in touch
 
-Email is the quickest way to reach me, or you can book a time on my calendar.
+I'm open to relocation within Europe. Email is the quickest way to reach me, or you can book a time on my calendar.
 
 [Email me](mailto:siddiquifaras@gmail.com) · [Book a call](https://siddiquifaras.github.io/contact.html#book)
 

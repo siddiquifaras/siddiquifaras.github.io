@@ -6,6 +6,8 @@ Most of my work is AI infrastructure: agent architectures, LLM inference and ser
 
 I also work on neuromorphic computing and event-based vision. I built all seven packages of [TALON](https://siddiquifaras.github.io/projects.html#talon), an SDK that takes spiking neural networks from PyTorch down to FPGA hardware, and I wrote [frames2py](https://siddiquifaras.github.io/projects.html#frames2py), an open-source library for streaming event-camera data. I've contributed fixes upstream to the [Neuromorphic Intermediate Representation](https://github.com/neuromorphs/NIR).
 
+I'm open to relocation within Europe.
+
 ## Education
 
 - 2021 – 2025 — B.Eng. in Software Engineering, National University of Sciences and Technology (NUST), Islamabad

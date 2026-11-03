@@ -1,0 +1,102 @@
+# Tells IndexNow search engines (Bing, Yandex, Seznam, Naver, Yep) which pages
+# changed, once GitHub Pages has actually published the new version.
+# Run it by hand from the Actions tab with "all" to resubmit every page.
+
+name: Notify search engines
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: Submit every page in the sitemap, not only changed ones
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  pages: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+env:
+  SITE: https://siddiquifaras.github.io/
+  INDEXNOW_KEY: de6b8171ce271ec0a495965e823a48b4
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for GitHub Pages to publish this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for i in $(seq 1 60); do
+            state=$(gh api "repos/${{ github.repository }}/pages/builds/latest" --jq '"\(.status) \(.commit)"')
+            echo "Pages: $state"
+            if [ "$state" = "built ${{ github.sha }}" ]; then exit 0; fi
+            case "$state" in errored*) echo "Pages build failed"; exit 1 ;; esac
+            sleep 10
+          done
+          echo "Timed out waiting for Pages"; exit 1
+
+      - name: Work out which URLs changed
+        id: urls
+        env:
+          ALL: ${{ github.event_name == 'workflow_dispatch' && inputs.all }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ "$ALL" = "true" ] || [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            git ls-files > changed.txt
+            echo "Submitting every page"
+          else
+            git diff --name-only "$BEFORE" "${{ github.sha }}" > changed.txt
+          fi
+          python3 - <<'PY'
+          import json, os, xml.etree.ElementTree as ET
+          site = os.environ["SITE"]
+          changed = set(open("changed.txt").read().split())
+          ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+          urls = []
+          for loc in ET.parse("sitemap.xml").iter(ns + "loc"):
+              path = loc.text[len(site):] or "index.html"
+              if path in changed or path + ".md" in changed:
+                  urls.append(loc.text)
+          for extra in ("llms.txt", "llms-full.txt"):
+              if extra in changed:
+                  urls.append(site + extra)
+          json.dump(urls, open("urls.json", "w"))
+          print("\n".join(urls) or "No page URLs changed")
+          PY
+          echo "count=$(python3 -c 'import json;print(len(json.load(open("urls.json"))))')" >> "$GITHUB_OUTPUT"
+
+      - name: Submit to IndexNow
+        if: steps.urls.outputs.count != '0'
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.error, urllib.request
+          site = os.environ["SITE"]
+          key = os.environ["INDEXNOW_KEY"]
+          body = json.dumps({
+              "host": site.split("/")[2],
+              "key": key,
+              "keyLocation": f"{site}{key}.txt",
+              "urlList": json.load(open("urls.json")),
+          }).encode()
+          request = urllib.request.Request(
+              "https://api.indexnow.org/indexnow", data=body,
+              headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  print("IndexNow accepted:", response.status)
+          except urllib.error.HTTPError as error:
+              print("IndexNow rejected:", error.code, error.read().decode()[:300])
+              raise SystemExit(1)
+          PY
