@@ -1,6 +1,6 @@
 # Contact
 
-Email is the quickest way to reach me. You can also book a call directly on my calendar. I'm open to relocation within Europe.
+Email is the quickest way to reach me. You can also book a call directly on my calendar. I'm open to relocation across Europe and to remote roles.
 
 - Email[siddiquifaras@gmail.com](mailto:siddiquifaras@gmail.com)
 - LinkedIn[linkedin.com/in/muhammad-faras-siddiqui](https://www.linkedin.com/in/muhammad-faras-siddiqui/)

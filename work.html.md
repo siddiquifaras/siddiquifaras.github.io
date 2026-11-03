@@ -25,15 +25,16 @@ Noah Labs
 
 Feb 2026 – Oct 2026 · San Francisco, USA · Remote
 
-Built core AI infrastructure for an on-premises, air-gapped AI coding platform, working directly with the CTO across agent runtime engineering, GPU infrastructure, model evaluation, security and platform engineering.
+Built core AI infrastructure for Noah Labs' on-premises, air-gapped products, Sentinel and ARK, working directly with the CTO across agent runtime engineering, GPU infrastructure, model evaluation, security and platform engineering.
 
-- **Agent runtime.** Architected and built the core agent runtime: planning, parallel sub-agent orchestration, tool execution, memory and code retrieval. Engineered isolated execution workspaces for concurrent agent sessions.
-- **GPU infrastructure.** Built GPU cluster scheduling and inference orchestration with vLLM across NVIDIA GPU clusters. Deployed and optimised Gemma 4 31B, NVIDIA Nemotron 3 Ultra and Thinking Machines Inkling, maximising concurrent workloads while minimising GPU requirements, compute costs and inference latency.
-- **Model evaluation and routing.** Developed evaluation and routing infrastructure that benchmarks models against task-specific workloads and selects them on capability, correctness and inference cost. Built live-inference evaluations covering task completion, tool use, code quality and policy compliance.
-- **Security.** Integrated data-loss prevention (DLP) into autonomous agent workflows and designed execution guardrails that separate untrusted context from authorised tool actions.
+- **Sentinel.** Architected and built the core agent runtime for Sentinel, Noah Labs' air-gapped AI IDE for regulated legacy-code environments: planning, parallel sub-agent orchestration, tool execution, memory and code retrieval. Engineered isolated execution workspaces for concurrent agent sessions.
+- **ARK.** Built agent-runtime and inference infrastructure for ARK, a safety layer for autonomous systems. Supported simulation workflows that detect GNSS disruption, apply configured safety policies and keep operator authorization over actions.
+- **GPU infrastructure.** Built GPU cluster scheduling and inference orchestration with vLLM across NVIDIA GPU clusters. Deployed and optimised Gemma 4 31B, NVIDIA Nemotron 3 Ultra and Thinking Machines Inkling across agent workloads, maximising concurrent workloads while minimising GPU requirements, compute costs and inference latency.
+- **Model evaluation and routing.** Developed task-aware evaluation and routing infrastructure that benchmarks models against task-specific workloads and selects them on capability, correctness, latency and inference cost. Built live-inference evaluations covering task completion, tool use, code quality and policy compliance to catch regressions before release.
+- **Security.** Integrated data-loss prevention (DLP) into autonomous agent workflows and designed execution guardrails so untrusted documents, tickets and commits can never initiate agent actions on their own.
 - **CI/CD and release.** Built and hardened CI/CD and release infrastructure: production Docker images, integration testing, test sharding, parallel mutation testing, and cross-platform packaging for macOS, Linux and Windows.
 
-Technologies: vLLM, NVIDIA GPU clusters, Gemma 4 31B, Nemotron 3 Ultra, Inkling, Multi-agent systems, Model routing, LLM evaluation, DLP, Docker
+Technologies: vLLM, NVIDIA GPU clusters, Gemma 4 31B, Nemotron 3 Ultra, Inkling, Multi-agent systems, Model routing, LLM evaluation, Autonomous systems safety, DLP, Docker
 
 ## Deep Learning Research Intern
 

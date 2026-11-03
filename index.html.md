@@ -1,6 +1,6 @@
 # AI systems that hold up in production
 
-I'm Faras Siddiqui, founding engineer at [CVision](https://www.cvision.dev). I build agent runtimes, LLM inference and serving, and the infrastructure that keeps them reliable, from cloud GPUs to air-gapped networks and edge hardware.
+I'm Faras Siddiqui, an AI engineer and a founding engineer at [CVision](https://www.cvision.dev). I build agent runtimes, LLM inference and serving, and the infrastructure that keeps them reliable, from cloud GPUs to air-gapped networks and edge hardware.
 
 ## What I work on
 
@@ -10,7 +10,7 @@ Alongside it I work on neuromorphic computing and event-based vision, mainly the
 
 ### Selected work
 
-- [Agent runtime for an air-gapped AI coding IDE](https://siddiquifaras.github.io/work.html#noah-labs) — the agent runtime, GPU cluster scheduling, model evaluation and routing, and security guardrails for an on-premises coding platform at Noah Labs
+- [Agent runtimes for air-gapped AI at Noah Labs](https://siddiquifaras.github.io/work.html#noah-labs) — Sentinel, an air-gapped AI IDE for regulated legacy code, and ARK, a safety layer for autonomous systems, plus GPU cluster scheduling, model evaluation and routing
 - [Agentic systems at CVision](https://siddiquifaras.github.io/work.html#cvision) — agentic LLM workflows, RAG, GNN-based reasoning, and knowledge graphs with graph-backed memory in Neo4j, across cloud, edge and industrial deployments
 - [TALON](https://siddiquifaras.github.io/projects.html#talon) — a neuromorphic SDK that takes spiking neural networks from PyTorch down to FPGA hardware
 - [frames2py](https://siddiquifaras.github.io/projects.html#frames2py) — an open-source library for streaming event-camera data at more than 20 million events per second
@@ -77,7 +77,7 @@ Power, cooling and edge budgets matter more than raw GPU counts.
 
 ## Get in touch
 
-I'm open to relocation within Europe. Email is the quickest way to reach me, or you can book a time on my calendar.
+I'm open to relocation across Europe and to remote roles. Email is the quickest way to reach me, or you can book a time on my calendar.
 
 [Email me](mailto:siddiquifaras@gmail.com) · [Book a call](https://siddiquifaras.github.io/contact.html#book)
 
