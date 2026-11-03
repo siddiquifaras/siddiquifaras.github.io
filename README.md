@@ -22,7 +22,7 @@ Live: [https://siddiquifaras.github.io](https://siddiquifaras.github.io)
 ├── sitemap.xml
 ├── styles.css
 ├── favicon.svg
-├── images/             # Portrait, home photo, blog/ meme images
+├── images/             # Portrait, home photo, blog/ memes, og/ link-preview cards
 ├── files/              # CV (PDF)
 └── frames2py.html, talon.html, bio.html, education.html, industry.html,
     pet-projects.html, publications.html   # Redirects from older URLs
